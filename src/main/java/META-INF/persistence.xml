@@ -5,6 +5,7 @@
 		<class>neko.com.model.Share</class>
 		<class>neko.com.model.User</class>
 		<class>neko.com.model.Video</class>
+		<class>neko.com.model.XacMinh</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost:1433;databaseName=nekoMovie"/>
 			<property name="javax.persistence.jdbc.user" value="sa"/>
