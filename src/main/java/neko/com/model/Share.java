@@ -20,14 +20,13 @@ public class Share implements Serializable {
 
 	private String email;
 
-
 	@Column(name="ShareDate")
 	private Date shareDate;
 
 	//bi-directional many-to-one association to User
 	@ManyToOne
-	@JoinColumn(name="idUser")
-	private User user;
+	@JoinColumn(name="EmailUser")
+	private Users user;
 
 	//bi-directional many-to-one association to Video
 	@ManyToOne
@@ -61,11 +60,11 @@ public class Share implements Serializable {
 		this.shareDate = shareDate;
 	}
 
-	public User getUser() {
+	public Users getUser() {
 		return this.user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(Users user) {
 		this.user = user;
 	}
 

@@ -2,6 +2,8 @@ package neko.com.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import java.util.Date;
 import java.util.List;
 
 
@@ -10,21 +12,36 @@ import java.util.List;
  * 
  */
 @Entity
-@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
-public class User implements Serializable {
+@Table(name = "Users")
+@NamedQuery(name="Users.findAll", query="SELECT u FROM Users u")
+public class Users implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private String idUser;
+	@Column(name="EmailUser")
+	private String emailUser;
+
+	@Override
+	public String toString() {
+		return "Users [emailUser=" + emailUser + ", admin=" + admin + ", fullname=" + fullname + ", password="
+				+ password + ", token=" + token + ", timeToken=" + timeToken + ", status=" + status + "]";
+	}
 
 	private boolean admin;
-
-	private String email;
 
 	@Column(name="Fullname")
 	private String fullname;
 
 	private String password;
+	
+	@Column(name = "token")
+	private String token;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name = "timeToken")
+	private Date timeToken;
+	
+	private String status;
 
 	//bi-directional many-to-one association to Favorite
 	@OneToMany(mappedBy="user")
@@ -34,15 +51,40 @@ public class User implements Serializable {
 	@OneToMany(mappedBy="user")
 	private List<Share> shares;
 
-	public User() {
+	public Users() {
 	}
 
-	public String getIdUser() {
-		return this.idUser;
+	public String getEmailUser() {
+		return this.emailUser;
 	}
 
-	public void setIdUser(String idUser) {
-		this.idUser = idUser;
+	public void setEmailUser(String emailUser) {
+		this.emailUser = emailUser;
+	}
+
+		
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	public Date getTimeToken() {
+		return timeToken;
+	}
+
+	public void setTimeToken(Date timeToken) {
+		this.timeToken = timeToken;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public boolean getAdmin() {
@@ -51,14 +93,6 @@ public class User implements Serializable {
 
 	public void setAdmin(boolean admin) {
 		this.admin = admin;
-	}
-
-	public String getEmail() {
-		return this.email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public String getFullname() {

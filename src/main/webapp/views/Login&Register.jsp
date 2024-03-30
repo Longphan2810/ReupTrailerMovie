@@ -20,6 +20,21 @@ border-bottom: 2px solid #EB8A05 !important ;
 
 }
 
+.invalidInput:{
+border: 1px solid red  ;
+
+}
+
+/* Thay đổi màu viền khi input được focus */
+input[type="text"]:focus {
+    border-color: #007bff  ;
+}
+
+input[type="text"]:after {
+    border-color: #007bff  ;
+}
+
+
 </style>
 
 
@@ -35,17 +50,17 @@ border-bottom: 2px solid #EB8A05 !important ;
 
 <div class="shadow-lg row container h-100 w-100 mx-auto p-4 my-5" style="background-color: #0D1023">
 <%------------ form  ----------------------- --%>
-<div  class="col-6 " style="height: 500px">
+<div  class="col-6 " style="height: 100%">
 <div role="tabpanel">
   <!-- List group -->
   <div class="list-group " id="myList" role="tablist">
    
    <div class="row">
     <div class="col-6">
-     <a class="active  list-group-item-action  list-group-item  text-white"  style="text-decoration: none; background-color: #0D1023 !important" data-bs-toggle="list" href="#home" role="tab"><h3>Login</h3> </a>
+     <a class="${currentAction!='Register'?'active':'' }  list-group-item-action  list-group-item  text-white"  style="text-decoration: none; background-color: #0D1023 !important" data-bs-toggle="list" href="#home" role="tab"><h3>Login</h3> </a>
     </div>
     <div class="col-6">
-    <a class=" list-group-item-action list-group-item  text-white" style="text-decoration: none;  background-color: #0D1023 !important" data-bs-toggle="list" href="#profile" role="tab"> <h3>Register</h3> </a>
+    <a class=" ${currentAction=='Register'?'active':'' } list-group-item-action list-group-item  text-white" style="text-decoration: none;  background-color: #0D1023 !important" data-bs-toggle="list" href="#profile" role="tab"> <h3>Register</h3> </a>
    </div>
    </div>
 
@@ -54,14 +69,14 @@ border-bottom: 2px solid #EB8A05 !important ;
   <!-- Tab panes -->
   <div class="tab-content">
   
-  
-    <div class="tab-pane active text-white" id="home" role="tabpanel">
+   <%-- Login form   --%>
+    <div class="tab-pane ${currentAction!='Register'?'active':'' } text-white" id="home" role="tabpanel">
     
     	<div class="container">
     	
     	<h2 class="my-4">Welcome Back !</h2>
     	
-    	<form action="">
+    	<form action="/ReupTrailerMovie/Login" method="get">
     	
     	
     	<div class="form-floating mb-3" >
@@ -101,44 +116,89 @@ border-bottom: 2px solid #EB8A05 !important ;
     </div>
     
     
+    <%-- Register form  --%>
     
     
     
+    <div class="tab-pane text-white ${currentAction=='Register'?'active':'' }" id="profile" role="tabpanel">
     
-    <div class="tab-pane text-white" id="profile" role="tabpanel">
+    <%--alert  --%>
+   <div id="liveAlertPlaceholder" >
+   <div class="${okMail==true?'':'d-none'}" >
+   	<div class="alert alert-success alert-dismissible" role="alert">   
+   <div>Đã gửi mail xác nhận về email, Vui lòng kiểm tra mail !</div>   
+   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div></div></div>
+    <%--alert  --%>
     
     	<div class="container mt-4">
     	
-    	<form action="">
+    	<form action="/ReupTrailerMovie/Register" method="post">
     	
     	<div class="form-floating mb-3" >
-  			<input type="text" class="form-control text-white" id="floatingInput" style="background-color: #0D1023 !important" placeholder="name@example.com">
+  			<input type="text" class="form-control text-white" value="${user.fullname}" name="fullname" required="required"  id="floatingInput" style="background-color: #0D1023 !important" placeholder="Fullname">
  			<label  for="floatingInput">Full Name</label>
+ 			 <%--alert  --%>
+   <div id="liveAlertPlaceholder" >	
+   <div class="${validName==true?'':'d-none'}">
+   	<div class="alert alert-danger alert-dismissible" role="alert">   
+   <div>Tên Không Hợp Lệ !</div>   
+   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div></div></div>
+    <%--alert  --%>
 		</div>
     	
     	<div class="form-floating mb-3" >
-  			<input type="email" class="form-control text-white" id="floatingInput" style="background-color: #0D1023 !important" placeholder="name@example.com">
+  			<input type="email" class="form-control text-white" value="${user.emailUser}" name="emailUser" required="required" id="floatingInput" style="background-color: #0D1023 !important" placeholder="name@example.com">
  			<label  for="floatingInput">Email address</label>
+ 			 <%--alert  --%>
+   <div id="liveAlertPlaceholder" >	
+   <div class="${trungMail==true?'':'d-none'}">
+   	<div class="alert alert-danger alert-dismissible" role="alert">   
+   <div>Email này đã được đăng ký trong hệ thống !</div>   
+   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div></div></div>
+    <%--alert  --%>
+ 			
 		</div>
+			
 		
-		<div class="form-floating mb-3"">
-  			<input type="password" class="form-control text-white" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Password">
+		
+		<div class="form-floating mb-3">
+  			<input type="password" class="form-control text-white" name="password" value="${user.password}" required="required" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Password">
   			<label for="floatingPassword">Password</label>
+  					 <%--alert  --%>
+   <div id="liveAlertPlaceholder" >
+   <div class="${shortPass==true?'':'d-none'}">
+   	<div class="alert alert-danger alert-dismissible" role="alert">   
+   <div>Mật khẩu vui lòng lớn hơn 8 ký tự!</div>   
+   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div></div></div>
+    <%--alert  --%>
 		</div>
     	
-		<div class="form-floating mb-3"">
-  			<input type="password" class="form-control text-white" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Password">
+		<div class="form-floating mb-3">
+  			<input type="password" class="form-control text-white invalidInput" value="${passConfirm}"  name="passwordConfirm" required="required" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Password">
   			<label for="floatingPassword">Confirm Password</label>
+  		 <%--alert  --%>
+   <div id="liveAlertPlaceholder" >
+   <div class="${difPass==true?'':'d-none'}">
+   	<div class="alert alert-danger alert-dismissible" role="alert">   
+   <div>Mật khẩu không khớp!</div>   
+   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div></div></div>
+    <%--alert  --%>
 		</div>
-			<div class="form-floating mb-3"">
-  			<input type="number" class="form-control text-white" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Password">
-  			<label for="floatingPassword">Code</label>
-		</div>
+			
 		
     	<div class="text-center">
-    	<button type="button" class="btn btn-warning btn-lg">Sign Up</button>
-    	<button type="button" class="btn btn-warning btn-lg">Send Code</button>
+    	<button type="submit" class="btn btn-warning btn-lg">Sign Up</button>
+    	
+    	
     	</div>
+    	
+    	<input type="hidden" name="admin" value="false" >
+    	<input type="hidden" name="admin" value="false" >
     	</form>
     	
     	</div>
@@ -167,7 +227,7 @@ border-bottom: 2px solid #EB8A05 !important ;
 
 <script type="text/javascript">
 
- var
+ 	
 
 </script>
 
