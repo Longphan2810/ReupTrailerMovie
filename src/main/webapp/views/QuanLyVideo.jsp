@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     
 <!DOCTYPE html>
 <html>
@@ -56,7 +57,14 @@ border-bottom: 2px solid #EB8A05 !important ;
   
   <%-- Quan ly video --%>
     <div class="tab-pane active text-white " id="home" role="tabpanel">
-    
+    				 <%--alert  --%>
+   <div id="liveAlertPlaceholder" >	
+   <div class="${capNhat==true?'':'d-none'}">
+   	<div class="alert alert-success alert-dismissible" role="alert">   
+   <div>Thanh Cong !</div>   
+   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div></div></div>
+    <%--alert  --%>
     	<div class="container">
     		<div class="container">
     			
@@ -66,10 +74,10 @@ border-bottom: 2px solid #EB8A05 !important ;
     	<div class="row" >
     	<%-- img  --%>
     	<div class="col-4">
-    		<img alt="" src="#" id="previewImage"  style="width: 80%;height: 250px">
+    		<img alt="" src="/ReupTrailerMovie/imgPoster/${video.poster}" id="previewImage"  style="width: 80%;height: 250px">
     		<div class="mb-3">
     		  <label for="formFile" class="form-label">Poster</label>
-  				<input class="form-control" required="required" name="poster" type="file" id="fileInput">
+  				<input class="form-control"  name="poster" type="file" id="fileInput">
 			</div>
     	</div>
     	<%-- info movie  --%>
@@ -83,6 +91,14 @@ border-bottom: 2px solid #EB8A05 !important ;
    <div class="${trungId==true?'':'d-none'}">
    	<div class="alert alert-danger alert-dismissible" role="alert">   
    <div>Video có id này đã tồn tại trong hệ thống !</div>   
+   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div></div></div>
+    <%--alert  --%>
+    				 <%--alert  --%>
+   <div id="liveAlertPlaceholder" >	
+   <div class="${KhongCoID==true?'':'d-none'}">
+   	<div class="alert alert-danger alert-dismissible" role="alert">   
+   <div>Không tìm thấy id video để thao tác !</div>   
    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
    </div></div></div>
     <%--alert  --%>
@@ -101,11 +117,11 @@ border-bottom: 2px solid #EB8A05 !important ;
     	<div class="row">
     	
     	<div class="col-6">
-    		<input type="radio" required="required" name="active" value="true" >
+    		<input type="radio" ${video.active==true?'checked':''} required="required" name="active" value="true" >
     		<label for="floatingPassword">Active</label>
     	</div>
     	<div class="col-6" >
-    		<input type="radio" name="active" value="false">
+    		<input type="radio" ${video.active==true?'':'checked'} name="active" value="false">
     		<label for="floatingPassword">Inactive</label>
     	</div>
     	
@@ -119,7 +135,7 @@ border-bottom: 2px solid #EB8A05 !important ;
     	<div class="row">
     	<div class="mb-3">
   		<label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-  		<textarea class="form-control text-white" value="${video.description}" name="description" id="exampleFormControlTextarea1" style="background-color: #0D1023 !important" rows="5"></textarea>
+  		<textarea class="form-control text-white" value="${video.description}"  name="description" id="exampleFormControlTextarea1" style="background-color: #0D1023 !important" rows="5"></textarea>
 		</div>
     	
     	</div>
@@ -178,104 +194,19 @@ border-bottom: 2px solid #EB8A05 !important ;
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td>  <a  href="#"> Edit</a> </td>
+  
+  	<c:forEach var="item" items="${listVideo}">
+  	 <tr>
+      <th >${item.idVideo}</th>
+      <td>${item.title}</td>
+      <td>${item.views}</td>
+      <td>${item.active}</td>
+      <td>  <a  href="/ReupTrailerMovie/EditVideo?idVideo=${item.idVideo}"> Edit</a> </td>
     </tr>
-    <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-        <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-    <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-     <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-     <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-     <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-     <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-     <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-     <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-    <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-    <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-    <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-     <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-    <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-         <td>  <a  href="#"> Edit</a> </td>
-    </tr>
+  	
+  	</c:forEach>
+  
+
   </tbody>
 </table>
     	

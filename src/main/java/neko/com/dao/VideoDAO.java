@@ -1,7 +1,10 @@
 package neko.com.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 
 import neko.com.jpa.JpaHelper;
 import neko.com.model.Video;
@@ -35,14 +38,16 @@ public class VideoDAO {
 		}
 
 	}
-	public void delete(Video video) {
+	public void delete(String id) {
 
 		try {
 			entityTran.begin();
+			Video video = entityMan.find(Video.class, id);
 			entityMan.remove(video);
 			entityTran.commit();
 		} catch (Exception e) {
 			// TODO: handle exception
+			System.out.println(e.getMessage());
 			entityTran.rollback();
 		}
 
@@ -51,6 +56,14 @@ public class VideoDAO {
 	public Video findById(String id) {
 		
 		return entityMan.find(Video.class, id);
+	}
+	
+	public List<Video> findAll(){
+		
+		TypedQuery<Video> query = entityMan.createNamedQuery("Video.findAll",Video.class);
+		
+		return query.getResultList();
+		
 	}
 
 }
