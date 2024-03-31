@@ -59,18 +59,35 @@ border-bottom: 2px solid #EB8A05 !important ;
     	<div class="container">
     	
     	
-    	<form action="">
+    	<form action="/ReupTrailerMovie/ForgotPass"  method="post">
     	
     	
     	<div class="form-floating my-5" >
-  			<input type="email" class="form-control text-white" id="floatingInput" style="background-color: #0D1023 !important" placeholder="name@example.com">
+  			<input type="email" class="form-control text-white" name="mail" id="floatingInput" style="background-color: #0D1023 !important" placeholder="name@example.com">
  			<label  for="floatingInput">Email address</label>
+ 			 <%--alert  --%>
+   <div id="liveAlertPlaceholder" >
+   <div class="${okMail==true?'':'d-none'}" >
+   	<div class="alert alert-success alert-dismissible" role="alert">   
+   <div>Đã gửi mail xác nhận về email, Vui lòng kiểm tra mail !</div>   
+   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div></div></div>
+    <%--alert  --%>
+     <%--alert  --%>
+   <div id="liveAlertPlaceholder" >
+   <div class="${saiMail==true?'':'d-none'}" >
+   	<div class="alert alert-danger alert-dismissible" role="alert">   
+   <div> Mail không tồn tại trong hệ thống !</div>   
+   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div></div></div>
+    <%--alert  --%>
+    
 		</div>
 		
 	
 
     	<div class="text-center my-3">
-    	<button type="button" class="btn btn-warning btn-lg">Submit</button>
+    	<button type="submit" class="btn btn-warning btn-lg">Submit</button>
     	</div>
     	</form>
     	
