@@ -17,6 +17,12 @@ public class Video implements Serializable {
 	@Id
 	private String idVideo;
 
+	@Override
+	public String toString() {
+		return "Video [idVideo=" + idVideo + ", active=" + active + ", description=" + description + ", poster="
+				+ poster + ", title=" + title + ", views=" + views + "]";
+	}
+
 	private boolean active;
 
 	private String description;

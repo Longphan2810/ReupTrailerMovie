@@ -60,35 +60,48 @@ border-bottom: 2px solid #EB8A05 !important ;
     	<div class="container">
     		<div class="container">
     			
-    		<form action="">
+   <form action="/ReupTrailerMovie/VideoManagerServlet" method="post" enctype="multipart/form-data">
     	<%-- info movie --%>
+    	
     	<div class="row" >
     	<%-- img  --%>
     	<div class="col-4">
-    		<img alt="" src="/ReupTrailerMovie/imgAsmJava/dochanh.png" style="width: 80%;height: 250px">
+    		<img alt="" src="#" id="previewImage"  style="width: 80%;height: 250px">
+    		<div class="mb-3">
+    		  <label for="formFile" class="form-label">Poster</label>
+  				<input class="form-control" required="required" name="poster" type="file" id="fileInput">
+			</div>
     	</div>
     	<%-- info movie  --%>
     	<div class="col-8">
     	
-    		<div class="form-floating mb-3"">
-  			<input type="text" class="form-control text-white" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Youtbe ID">
-  			<label for="floatingPassword">Youtbe ID</label>
+    		<div class="form-floating mb-3">
+  			<input type="text" class="form-control text-white" required="required" value="${video.idVideo}" name="idVideo" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Youtbe ID">
+  			<label for="floatingPassword">Youtube ID</label>
+  					 <%--alert  --%>
+   <div id="liveAlertPlaceholder" >	
+   <div class="${trungId==true?'':'d-none'}">
+   	<div class="alert alert-danger alert-dismissible" role="alert">   
+   <div>Video có id này đã tồn tại trong hệ thống !</div>   
+   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div></div></div>
+    <%--alert  --%>
 		</div>
 		
-		<div class="form-floating mb-3"">
-  			<input type="text" class="form-control text-white" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Video Title">
+		<div class="form-floating mb-3">
+  			<input type="text" class="form-control text-white" required="required" value="${video.title}" name="title" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Video Title">
   			<label for="floatingPassword">Video Title</label>
 		</div>
 		
-		<div class="form-floating mb-3"">
-  			<input type="text" class="form-control text-white" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Views">
+		<div class="form-floating mb-3">
+  			<input type="number" class="form-control text-white" required="required" value="${video.views}" name="views" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Views">
   			<label for="floatingPassword">Views</label>
 		</div>
     	
     	<div class="row">
     	
     	<div class="col-6">
-    		<input type="radio" name="active" value="true" >
+    		<input type="radio" required="required" name="active" value="true" >
     		<label for="floatingPassword">Active</label>
     	</div>
     	<div class="col-6" >
@@ -106,7 +119,7 @@ border-bottom: 2px solid #EB8A05 !important ;
     	<div class="row">
     	<div class="mb-3">
   		<label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-  		<textarea class="form-control text-white" id="exampleFormControlTextarea1" style="background-color: #0D1023 !important" rows="5"></textarea>
+  		<textarea class="form-control text-white" value="${video.description}" name="description" id="exampleFormControlTextarea1" style="background-color: #0D1023 !important" rows="5"></textarea>
 		</div>
     	
     	</div>
@@ -116,16 +129,16 @@ border-bottom: 2px solid #EB8A05 !important ;
     	<div class="row">
     	
     	<div class="col-3 ">
-    	<button type="button" class="btn btn-secondary w-100">Create</button>
+    	<button type="submit" formaction="/ReupTrailerMovie/createVideo" class="btn btn-secondary w-100">Create</button>
     	</div>
     	<div class="col-3">
-    	<button type="button" class="btn btn-secondary w-100">Update</button>
+    	<button type="submit" formaction="/ReupTrailerMovie/updateVideo" class="btn btn-secondary w-100">Update</button>
     	</div>
     	<div class="col-3">
-    	<button type="button" class="btn btn-secondary w-100">Delete</button>
+    	<button type="submit" formaction="/ReupTrailerMovie/DeleteVideo" class="btn btn-secondary w-100">Delete</button>
     	</div>
     	<div class="col-3">
-    	<button type="button" class="btn btn-secondary w-100">Reset</button>
+    	<button type="submit" formaction="/ReupTrailerMovie/RestVideoForm" class="btn btn-secondary w-100">Reset</button>
     	</div>
     	
     	</div>
@@ -287,7 +300,21 @@ border-bottom: 2px solid #EB8A05 !important ;
 
 <script type="text/javascript">
 
- var
+// Lắng nghe sự kiện khi người dùng chọn tệp tin
+document.getElementById('fileInput').addEventListener('change', function(event) {
+    var file = event.target.files[0];
+    var reader = new FileReader();
+    
+    // Đọc nội dung của tệp tin được chọn
+    reader.onload = function(event) {
+        var previewImage = document.getElementById('previewImage');
+        
+        // Cập nhật thuộc tính src của thẻ img để hiển thị hình ảnh đã chọn
+        previewImage.src = event.target.result;
+    };
+    
+    reader.readAsDataURL(file);
+});
 
 </script>
 
