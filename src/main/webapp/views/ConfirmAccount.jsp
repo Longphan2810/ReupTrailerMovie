@@ -40,10 +40,10 @@ border-bottom: 2px solid #EB8A05 !important ;
   <!-- List group -->
   <div class="list-group my-5 " id="myList" role="tablist">
    
-   <div class="row">
+   <div class="row my-4">
     <div class="col-10">
      <a class="active  list-group-item-action  list-group-item  text-white"  style="text-decoration: none; background-color: #0D1023 !important" data-bs-toggle="list" href="#home" role="tab">
-     		<h3>Forgot Your Password ?</h3> </a>
+     		<h3>${thanhCong}</h3> </a>
     </div>
 
    </div>
@@ -62,15 +62,12 @@ border-bottom: 2px solid #EB8A05 !important ;
     	<form action="">
     	
     	
-    	<div class="form-floating my-5" >
-  			<input type="email" class="form-control text-white" id="floatingInput" style="background-color: #0D1023 !important" placeholder="name@example.com">
- 			<label  for="floatingInput">Email address</label>
-		</div>
+    	<h4> Vui lòng Quay lại trang đăng nhập để sử dụng ứng dụng !</h4>
 		
-	
-
     	<div class="text-center my-3">
-    	<button type="button" class="btn btn-warning btn-lg">Submit</button>
+    	
+    	<button type="submit" formaction="/ReupTrailerMovie/views/Login&Register.jsp" class="btn btn-warning btn-lg">Log in</button>
+    	
     	</div>
     	</form>
     	

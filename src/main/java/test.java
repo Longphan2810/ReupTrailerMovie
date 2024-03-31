@@ -3,6 +3,7 @@ import java.util.Date;
 
 import neko.com.dao.UserDAO;
 import neko.com.dao.XacMinhDAO;
+import neko.com.model.Users;
 import neko.com.ulti.MailHelper;
 
 public class test {
@@ -10,8 +11,8 @@ public class test {
 	public static void main(String[] args) {
 		
 		MailHelper mailHelper = new MailHelper();
-		
-		mailHelper.sendGetCodeToMail("phannhatlong44@gmail.com");
+//		
+//		mailHelper.sendGetCodeToMail("phannhatlong44@gmail.com");
 //	
 		
 //		XacMinhDAO xmDao = new XacMinhDAO();
@@ -34,14 +35,35 @@ public class test {
 //		System.out.println(currentTime.getTime()+oneMinute);
 		
 		UserDAO userDao = new UserDAO();
+//		
+//		Users user = userDao.findUsersByToken("VXNlcnMgW2VtYWlsVXNlcj1waGFubmhhdGxvbmc0NEBnbWFpbC5jb20sIGFkbWluPWZhbHNlLCBmdWxsbmFtZT1OZ3V5ZW4gVmFuIEIsIHBhc3N3b3JkPTEyMw==");
+//	
 		
-	
+		Users user = userDao.findUsersByEmail("phannhatlong44@gmail.com");
+		MailHelper.sendPassToMail("phannhatlong44@gmail.com", user.getPassword());
+//		
+//		if(userDao.exists("vana@gmai.com")) {
+//			System.out.println("x");
+//		} else {
+//			System.out.println("o");
+//		}
+//		
 		
-		if(userDao.exists("vana@gmai.com")) {
-			System.out.println("x");
-		} else {
-			System.out.println("o");
-		}
+		
+//		String regex = "^[a-zA-Z ]*$";
+//		String  name = "ng";
+//		
+//		if(name.matches(regex)) {
+//			System.out.println("ok");
+//			
+//		} else {
+//			System.out.println("cook");
+//			
+//		}
+		
+		
+		
+		
 		
 	}
 	

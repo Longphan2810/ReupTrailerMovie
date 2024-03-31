@@ -76,17 +76,33 @@ input[type="text"]:after {
     	
     	<h2 class="my-4">Welcome Back !</h2>
     	
-    	<form action="/ReupTrailerMovie/Login" method="get">
+    	<form action="/ReupTrailerMovie/Login" method="post">
     	
     	
     	<div class="form-floating mb-3" >
-  			<input type="email" class="form-control text-white" id="floatingInput" style="background-color: #0D1023 !important" placeholder="name@example.com">
+  			<input type="email" class="form-control text-white" value="${emailOut}" name="mail" required="required" id="floatingInput" style="background-color: #0D1023 !important" placeholder="name@example.com">
  			<label  for="floatingInput">Email address</label>
+ 					 <%--alert  --%>
+   <div id="liveAlertPlaceholder" >	
+   <div class="${saiMail==true?'':'d-none'}">
+   	<div class="alert alert-danger alert-dismissible" role="alert">   
+   <div>Email này không tồn tại trong hệ thống !</div>   
+   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div></div></div>
+    <%--alert  --%>
 		</div>
 		
 		<div class="form-floating">
-  			<input type="password" class="form-control text-white" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Password">
+  			<input type="password" class="form-control text-white" value="${passOut}" name="pass" required="required" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Password">
   			<label for="floatingPassword">Password</label>
+  					 <%--alert  --%>
+   <div id="liveAlertPlaceholder" >	
+   <div class="${saiPass==true?'':'d-none'}">
+   	<div class="alert alert-danger alert-dismissible" role="alert">   
+   <div>Sai Mật khẩu !</div>   
+   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div></div></div>
+    <%--alert  --%>
 		</div>
     	
 		<div class=" my-1 row">
@@ -102,7 +118,7 @@ input[type="text"]:after {
   			</div>
 		</div>
     	<div class="text-center">
-    	<button type="button" class="btn btn-warning btn-lg">Login</button>
+    	<button type="submit" class="btn btn-warning btn-lg">Login</button>
     	</div>
     	</form>
     	

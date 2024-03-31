@@ -3,7 +3,7 @@ package neko.com.model;
 import java.io.Serializable;
 import javax.persistence.*;
 
-import java.util.Date;
+
 import java.util.List;
 
 
@@ -24,7 +24,7 @@ public class Users implements Serializable {
 	@Override
 	public String toString() {
 		return "Users [emailUser=" + emailUser + ", admin=" + admin + ", fullname=" + fullname + ", password="
-				+ password + ", token=" + token + ", timeToken=" + timeToken + ", status=" + status + "]";
+				+ password ;
 	}
 
 	private boolean admin;
@@ -37,9 +37,9 @@ public class Users implements Serializable {
 	@Column(name = "token")
 	private String token;
 	
-	@Temporal(TemporalType.DATE)
+	
 	@Column(name = "timeToken")
-	private Date timeToken;
+	private Long timeToken;
 	
 	private String status;
 
@@ -71,11 +71,11 @@ public class Users implements Serializable {
 		this.token = token;
 	}
 
-	public Date getTimeToken() {
+	public Long getTimeToken() {
 		return timeToken;
 	}
 
-	public void setTimeToken(Date timeToken) {
+	public void setTimeToken(Long timeToken) {
 		this.timeToken = timeToken;
 	}
 
