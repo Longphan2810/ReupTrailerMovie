@@ -145,16 +145,16 @@ border-bottom: 2px solid #EB8A05 !important ;
     	<div class="row">
     	
     	<div class="col-3 ">
-    	<button type="submit" formaction="/ReupTrailerMovie/createVideo" class="btn btn-secondary w-100">Create</button>
+    	<button type="submit" formaction="/ReupTrailerMovie/VideoManagerServlet/createVideo" class="btn btn-secondary w-100">Create</button>
     	</div>
     	<div class="col-3">
-    	<button type="submit" formaction="/ReupTrailerMovie/updateVideo" class="btn btn-secondary w-100">Update</button>
+    	<button type="submit" formaction="/ReupTrailerMovie/VideoManagerServlet/updateVideo" class="btn btn-secondary w-100">Update</button>
     	</div>
     	<div class="col-3">
-    	<button type="submit" formaction="/ReupTrailerMovie/DeleteVideo" class="btn btn-secondary w-100">Delete</button>
+    	<button type="submit" formaction="/ReupTrailerMovie/VideoManagerServlet/DeleteVideo" class="btn btn-secondary w-100">Delete</button>
     	</div>
     	<div class="col-3">
-    	<button type="submit" formaction="/ReupTrailerMovie/RestVideoForm" class="btn btn-secondary w-100">Reset</button>
+    	<button type="submit" formaction="/ReupTrailerMovie/VideoManagerServlet/RestVideoForm" class="btn btn-secondary w-100">Reset</button>
     	</div>
     	
     	</div>
@@ -201,7 +201,7 @@ border-bottom: 2px solid #EB8A05 !important ;
       <td>${item.title}</td>
       <td>${item.views}</td>
       <td>${item.active}</td>
-      <td>  <a  href="/ReupTrailerMovie/EditVideo?idVideo=${item.idVideo}"> Edit</a> </td>
+      <td>  <a  href="/ReupTrailerMovie/VideoManagerServlet/EditVideo?idVideo=${item.idVideo}"> Edit</a> </td>
     </tr>
   	
   	</c:forEach>

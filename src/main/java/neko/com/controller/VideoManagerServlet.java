@@ -22,7 +22,7 @@ import neko.com.ulti.ShareHelper;
  * Servlet implementation class VideoManagerServlet
  */
 @MultipartConfig
-@WebServlet({ "/VideoManagerServlet", "/createVideo", "/updateVideo", "/DeleteVideo", "/RestVideoForm", "/EditVideo" })
+@WebServlet({"/VideoManagerServlet/createVideo", "/VideoManagerServlet/updateVideo", "/VideoManagerServlet/DeleteVideo", "/VideoManagerServlet/RestVideoForm", "/VideoManagerServlet/EditVideo" })
 public class VideoManagerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private VideoDAO videoDao = new VideoDAO();
@@ -40,34 +40,35 @@ public class VideoManagerServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		String uri = request.getRequestURI();
 
 		if (request.getMethod().equalsIgnoreCase("post")) {
 
-			if (uri.contains("createVideo")) {
+			if (uri.contains("/VideoManagerServlet/createVideo")) {
 
 				this.getCreateVideo(request, response);
 
 				return;
 
-			} else if (uri.contains("updateVideo")) {
+			} else if (uri.contains("/VideoManagerServlet/updateVideo")) {
 				this.getUpdateVideo(request, response);
 
 				return;
 
-			} else if (uri.contains("DeleteVideo")) {
+			} else if (uri.contains("/VideoManagerServlet/DeleteVideo")) {
 				this.getDeleteVideo(request, response);
 
 				return;
 
-			} else if (uri.contains("RestVideoForm")) {
+			} else if (uri.contains("/VideoManagerServlet/RestVideoForm")) {
 
 			}
 
 		}
 
-		if (uri.contains("EditVideo")) {
+		if (uri.contains("/VideoManagerServlet/EditVideo")) {
 			this.getEdit(request, response);
 		}
 		this.loadTable(request, response);

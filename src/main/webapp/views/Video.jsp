@@ -22,7 +22,7 @@
 </div>
 
  <div class="mx-auto d-flex justify-content-center" style="width: 100% ;height: 500px"> 
- <iframe width=80%; height="100%" src="https://www.youtube.com/embed/m04-ows2eng?si=RLQHP3pMu2Bzosj3"></iframe>
+ <iframe width=80%; height="100%" src="https://www.youtube.com/embed/${videoCurrent.idVideo}"></iframe>
  
  </div>
  
@@ -33,7 +33,7 @@
 <div class="w-100  py-3 text-white container " >
 	<div class="row">
 	<div class="col-md-9">
-	<h4 class="text-white">PHIM VÕ THUẬT HÀNH ĐỘNG HÀI VIỆT NAM | ACTION C</h4>
+	<h4 class="text-white">${videoCurrent.title}</h4>
 	</div>
 	<div class="col-md-3 mx-auto text-center">
 	<button type="button" class="btn btn-secondary">
@@ -54,11 +54,9 @@
  <%-- views  and description --%>
 
 	<div class="w-100 h-100 py-5 text-white container " style="background-color: #0D1023;" >
-		<h4 class="ms-5"> 9.900 Views </h4>
+		<h4 class="ms-5"> ${videoCurrent.views} Views </h4>
 		<h4 class="ms-5"> 
-		TUYỂN TẬP PHIM KIM DUNG PARODY | PHIM VÕ THUẬT HÀNH ĐỘNG HÀI VIỆT NAM | ACTION C
-MONG MỌI NGƯỜI LIKE, SHARE VÀ ĐĂNG KÝ KÊNH ĐỂ ỦNG HỘ TEAM MÌNH LÀM NHỮNG VIDEO TIẾP THEO NHA. CẢM ƠN MỌI NGƯỜI ĐÃ XEM & ỦNG HỘ!!!
-		
+		${videoCurrent.description}
 		</h4>
 	
 	

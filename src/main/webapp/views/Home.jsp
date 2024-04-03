@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,19 +43,7 @@
 
 <%-- Button --%>
 <div class="container mx-auto row my-3 ">
-<div class="col-3 ">
-<button type="button" class="btn btn-lg w-100 active btn-outline-warning">Movie</button>
-</div>
-<div class="col-3">
-<button type="button" class="btn btn-lg w-100 btn-outline-warning">Drama</button>
-</div>
 
-<div class="col-3">
-<button type="button" class="btn btn-lg  w-100 btn-outline-warning">Music</button>
-</div>
-<div class="col-3">
-<button type="button" class="btn btn-lg w-100 btn-outline-warning">More</button>
-</div>
 </div>
 
 <%-- container movie render and top view movie --%>
@@ -65,30 +54,19 @@
 <div class="col-9 ">
 <h4 class="ms-3 text-white">Movie</h4>
 	<div  class="row mx-auto">
+	
+		<c:forEach var="item" items="${listVideo}">
 		<div class="col-sm-6 col-md-4 col-lg-3  col-sx-12 ">
-		<%@include file="/views/Movie/MovieRender.jsp" %>
+		<jsp:include page="./Movie/MovieRender.jsp">
+			<jsp:param value="${item.title}" name="title"/>
+			<jsp:param value="${item.poster}" name="poster"/>
+			<jsp:param value="${item.idVideo}" name="idVideo"/>
+		
+		</jsp:include>
+		
 		</div>
-		<div class="col-sm-6 col-md-4  col-lg-3  col-sx-12 ">
-		<%@include file="/views/Movie/MovieRender.jsp" %>
-		</div>
-		<div class="col-sm-6 col-md-4  col-lg-3  col-sx-12 ">
-		<%@include file="/views/Movie/MovieRender.jsp" %>
-		</div>
-		<div class="col-sm-6 col-md-4 col-lg-3  col-sx-12 ">
-		<%@include file="/views/Movie/MovieRender.jsp" %>
-		</div>
-		<div class="col-sm-6 col-md-4 col-lg-3  col-sx-12 ">
-		<%@include file="/views/Movie/MovieRender.jsp" %>
-		</div>
-		<div class="col-sm-6 col-md-4  col-lg-3  col-sx-12 ">
-		<%@include file="/views/Movie/MovieRender.jsp" %>
-		</div>
-		<div class="col-sm-6 col-md-4  col-lg-3  col-sx-12 ">
-		<%@include file="/views/Movie/MovieRender.jsp" %>
-		</div>
-		<div class="col-sm-6 col-md-4 col-lg-3  col-sx-12 ">
-		<%@include file="/views/Movie/MovieRender.jsp" %>
-		</div>
+		</c:forEach>
+		
 			
 	
 	</div>

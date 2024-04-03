@@ -23,20 +23,20 @@
         
         <c:if test="${sessionScope.user.admin}">
         <li class="nav-item me-3">
-          <a class="nav-link text-white " href="#"> <h4>Video</h4> </a>
+          <a class="nav-link text-white " href="/ReupTrailerMovie/views/QuanLyVideo.jsp"> <h4>Video</h4> </a>
         </li>
          </c:if>
         
          <c:if test="${sessionScope.user.admin}">
        <li class="nav-item me-3">
-          <a class="nav-link text-white " href="#"> <h4>User</h4> </a>
+          <a class="nav-link text-white " href="/ReupTrailerMovie/views/QuanLyNguoiDung.jsp"> <h4>User</h4> </a>
         </li>
         	</c:if>
         
         
          <c:if test="${sessionScope.user.admin}">
          <li class="nav-item me-3">
-          <a class="nav-link text-white " href="#"> <h4>Reports</h4> </a>
+          <a class="nav-link text-white " href="/ReupTrailerMovie/views/BaoCao.jsp"> <h4>Reports</h4> </a>
         </li>
         </c:if>
         
@@ -45,7 +45,6 @@
           <a class="nav-link  text-white " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <h4>Account</h4>
           </a>
-          
           <ul class="dropdown-menu">
           
           <c:if test="${sessionScope.user==null}">
