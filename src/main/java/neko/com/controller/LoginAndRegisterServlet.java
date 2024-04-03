@@ -20,7 +20,7 @@ import neko.com.ulti.RegisterHelper;
 /**
  * Servlet implementation class LoginAndRegisterServlet
  */
-@WebServlet({ "/Login", "/Register" })
+@WebServlet({ "/Login", "/Register", "/logout" })
 public class LoginAndRegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserDAO userDao = new UserDAO();
@@ -52,6 +52,12 @@ public class LoginAndRegisterServlet extends HttpServlet {
 				return;
 			}
 		}
+		if (uri.contains("logout")) {
+
+			this.getLogOut(request, response);
+			return;
+		}
+
 
 		request.getRequestDispatcher("/views/Login&Register.jsp").forward(request, response);
 
@@ -59,38 +65,45 @@ public class LoginAndRegisterServlet extends HttpServlet {
 
 	private void getLogin(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-			String inputMail = request.getParameter("mail");
-			String inputPass = request.getParameter("pass");
-			String remeber = request.getParameter("remember");
-		
-			Users user = userDao.findUsersByEmail(inputMail);
-			// check user
-			if(user==null) {
-				request.setAttribute("saiMail", true);
-				
+		String inputMail = request.getParameter("mail");
+		String inputPass = request.getParameter("pass");
+		String remeber = request.getParameter("remember");
+
+		Users user = userDao.findUsersByEmail(inputMail);
+		// check user
+		if (user == null) {
+			request.setAttribute("saiMail", true);
+
+		} else {
+
+			// check pass
+			if (user.getPassword().equals(inputPass)) {
+				// save cookie remember
+
+				request.getSession().setAttribute("user", user);
+				request.getRequestDispatcher("/views/Home.jsp").forward(request, response);
+				return;
 			} else {
-				
-				
-				//check pass
-				if(user.getPassword().equals(inputPass)) {
-					// save cookie remember
-				
-					
-					request.getRequestDispatcher("/views/Home.jsp").forward(request, response);
-					return;
-				} else {
-					request.setAttribute("saiPass", true);
-					
-				}
-				
+				request.setAttribute("saiPass", true);
+
 			}
-			
-			// return data to form
-			request.setAttribute("emailOut", inputMail);
-			request.setAttribute("passOut", inputPass);
-			
+
+		}
+
+		// return data to form
+		request.setAttribute("emailOut", inputMail);
+		request.setAttribute("passOut", inputPass);
+
 		request.setAttribute("currentAction", "Login");
 		request.getRequestDispatcher("/views/Login&Register.jsp").forward(request, response);
+
+	}
+
+	private void getLogOut(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		request.getSession().setAttribute("user", null);
+		request.getRequestDispatcher("/views/Home.jsp").forward(request, response);
 
 	}
 
@@ -111,7 +124,7 @@ public class LoginAndRegisterServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		if (!user.getFullname().matches(checkName)) {
 
 			request.setAttribute("validName", true);
@@ -122,7 +135,7 @@ public class LoginAndRegisterServlet extends HttpServlet {
 			return;
 		}
 
-		if (user.getPassword().length()<8) {
+		if (user.getPassword().length() < 8) {
 
 			request.setAttribute("shortPass", true);
 			request.setAttribute("user", user);

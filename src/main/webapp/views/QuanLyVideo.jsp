@@ -29,7 +29,7 @@ border-bottom: 2px solid #EB8A05 !important ;
 
 <%--Nav bar --%>
 <div class="mb-3 shadow-lg">
-<%@ include file="/views/navbar/NavBarAdmin.jsp" %>
+<%@ include file="/views/navbar/NavBarUser.jsp" %>
 </div>
 
 
