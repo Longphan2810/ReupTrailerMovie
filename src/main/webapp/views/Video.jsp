@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     
 <!DOCTYPE html>
 <html>
@@ -54,7 +55,7 @@
  <%-- views  and description --%>
 
 	<div class="w-100 h-100 py-5 text-white container " style="background-color: #0D1023;" >
-		<h4 class="ms-5"> ${videoCurrent.views} Views </h4>
+		<h5 class="ms-5"> ${videoCurrent.views} Views </h5>
 		<h4 class="ms-5"> 
 		${videoCurrent.description}
 		</h4>
@@ -78,22 +79,22 @@
 <%--Movie render --%>
 <div >
 <h4 class="ms-3 text-white">Gan Day </h4>
-	<div  class="row mx-auto">
-		<div class="col-sm-6 col-md-4 col-lg-3  col-sx-12 ">
-		<%@include file="/views/Movie/MovieRender.jsp" %>
-		</div>
-		<div class="col-sm-6 col-md-4  col-lg-3  col-sx-12 ">
-		<%@include file="/views/Movie/MovieRender.jsp" %>
-		</div>
-		<div class="col-sm-6 col-md-4  col-lg-3  col-sx-12 ">
-		<%@include file="/views/Movie/MovieRender.jsp" %>
-		</div>
-		<div class="col-sm-6 col-md-4 col-lg-3  col-sx-12 ">
-		<%@include file="/views/Movie/MovieRender.jsp" %>
-		</div>
-		
+
 	
+	<div  class="row mx-auto">
+	<c:forEach var="i" items="${listVuaXem}">
+		<div class="col-sm-6 col-md-4 col-lg-3  col-sx-12 ">
+		
+		<jsp:include page="./Movie/MovieRender.jsp">
+			<jsp:param value="${i.title}" name="title"/>
+			<jsp:param value="${i.poster}" name="poster"/>
+			<jsp:param value="${i.idVideo}" name="idVideo"/>
+		
+		</jsp:include>
+		</div>
+		</c:forEach>
 	</div>
+
 
 </div>
 

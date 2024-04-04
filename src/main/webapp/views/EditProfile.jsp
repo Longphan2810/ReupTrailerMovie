@@ -63,37 +63,31 @@ border-bottom: 2px solid #EB8A05 !important ;
     	<form action="">
     	
     	<div class="form-floating mb-3" >
-  			<input type="email" class="form-control text-white" id="floatingInput" style="background-color: #0D1023 !important" placeholder="name@example.com">
+  			<input type="email" class="form-control text-white" readonly="readonly" name="emailUser" id="floatingInput" style="background-color: #0D1023 !important" placeholder="name@example.com">
  			<label  for="floatingInput">Email address</label>
 		</div>
     	
-    	<div class="form-floating mb-3"">
-  			<input type="text" class="form-control text-white" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Password">
+    	<div class="form-floating mb-3">
+  			<input type="text" class="form-control text-white" name="fullname" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Password">
   			<label for="floatingPassword">Name</label>
 		</div>
+		
+		<div class="form-floating mb-3">
+  			<input type="text" class="form-control text-white" name="address" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Password">
+  			<label for="floatingPassword">Address</label>
+		</div>
+		<div class="form-floating mb-3">
+  			<input type="text" class="form-control text-white" name="phone" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Password">
+  			<label for="floatingPassword">Phone number</label>
+		</div>
+		
     	
-    	<div class="form-floating mb-3"">
-  			<input type="password" class="form-control text-white" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Password">
+    	<div class="form-floating mb-3">
+  			<input type="password" class="form-control text-white" name="password" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Password">
   			<label for="floatingPassword">Password</label>
 		</div>
     	
-		<div class="form-floating mb-3"">
-  			<input type="text" class="form-control text-white" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Password">
-  			<label for="floatingPassword">Code</label>
-		</div>
-	
-		<div class=" my-1 row">
-			<div class="col-8">
 		
-  			
-  			</div>
-  			
-  			<div class="col-4 ">
-  			<a href="#">
-  				<label style="background-color: #0D1023 !important" >Send code again</label>
-  			</a>
-  			</div>
-		</div>
 
     	<div class="text-center my-3">
     	<button type="button" class="btn btn-warning btn-lg">Confirm</button>

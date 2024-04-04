@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     
 <!DOCTYPE html>
 <html>
@@ -59,8 +60,26 @@ border-bottom: 2px solid #EB8A05 !important ;
     
     	<div class="container">
     		<div class="container">
-    			
-    		<form action="">
+    		
+    	<%--alert  --%>
+   <div id="liveAlertPlaceholder" >	
+   <div class="${saiMail==true?'':'d-none'}">
+   	<div class="alert alert-danger alert-dismissible" role="alert">   
+   <div>Vui lòng chọn edit từ bảng User list trước !</div>   
+   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div></div></div>
+    <%--alert  --%>
+    
+    <%--alert  --%>
+   <div id="liveAlertPlaceholder" >	
+   <div class="${okMail==true?'':'d-none'}">
+   	<div class="alert alert-success alert-dismissible" role="alert">   
+   <div>Đã hoàn tất !</div>   
+   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div></div></div>
+    <%--alert  --%>
+    
+    		<form action="" method="post">
     	<%-- info movie --%>
     	<div class="row" >
     	<%-- img  --%>
@@ -71,29 +90,29 @@ border-bottom: 2px solid #EB8A05 !important ;
     	<%-- info movie  --%>
     	<div class="col-8">
     	
-    		<div class="form-floating mb-3"">
-  			<input type="Email" class="form-control text-white" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Email">
+    		<div class="form-floating mb-3">
+  			<input type="Email" class="form-control text-white" value="${CurrentUser.emailUser}" name="emailUser" readonly="readonly" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Email">
   			<label for="floatingPassword">Email</label>
 		</div>
 		
-		<div class="form-floating mb-3"">
-  			<input type="text" class="form-control text-white" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Full name">
+		<div class="form-floating mb-3">
+  			<input type="text" class="form-control text-white" value="${CurrentUser.fullname}" name="fullname"  readonly="readonly"  style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Full name">
   			<label for="floatingPassword">Full name</label>
 		</div>
 		
-		<div class="form-floating mb-3"">
-  			<input type="password" class="form-control text-white" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Password">
+		<div class="form-floating mb-3">
+  			<input type="text" class="form-control text-white" value="${CurrentUser.password}" name="password" readonly="readonly"  style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Password">
   			<label for="floatingPassword">password</label>
-		</div>
+		</div>	
     	
     	<div class="row">
     	
     	<div class="col-6">
-    		<input type="radio" name="admin" value="true" >
+    		<input type="radio" required="required" ${CurrentUser.admin?'checked':''} name="admin" value="true" >
     		<label for="floatingPassword">Admin</label>
-    	</div>
+    	</div>	
     	<div class="col-6" >
-    		<input type="radio" name="admin" value="false">
+    		<input type="radio" required="required" ${CurrentUser.admin?'':'checked'} name="admin" value="false">
     		<label for="floatingPassword">User</label>
     	</div>
     	
@@ -110,13 +129,13 @@ border-bottom: 2px solid #EB8A05 !important ;
     	<div class="row my-5">
     	
     	<div class="col-4">
-    	<button type="button" class="btn btn-secondary w-100">Update</button>
+    	<button type="submit" formaction="/ReupTrailerMovie/UserManagerServlet/update" class="btn btn-secondary w-100">Update</button>
     	</div>
     	<div class="col-4">
-    	<button type="button" class="btn btn-secondary w-100">Delete</button>
+    	<button type="submit" formaction="/ReupTrailerMovie/UserManagerServlet/delete" class="btn btn-secondary w-100">Delete</button>
     	</div>
     	<div class="col-4">
-    	<button type="button" class="btn btn-secondary w-100">Reset</button>
+    	<button type="submit" formaction="/ReupTrailerMovie/UserManagerServlet/reset" class="btn btn-secondary w-100">Reset</button>
     	</div>
     	
     	</div>
@@ -151,109 +170,23 @@ border-bottom: 2px solid #EB8A05 !important ;
       <th scope="col">User Name</th>
       <th scope="col">Email</th>
       <th scope="col">Password</th>
-      <th scope="col">Role</th>
+      <th scope="col">Admin</th>
+      <th scope="col">Status</th>
       <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
+  	<c:forEach var="item" items="${listUser}">
     <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td>  <a  href="#"> Edit</a> </td>
+      <th >${item.fullname}</th>
+      <td>${item.emailUser}</td>
+      <td>${item.password}</td>
+      <td>${item.admin}</td>
+      <td>${item.status}</td>
+      <td>  <a  href="/ReupTrailerMovie/UserManagerServlet/edit?idEdit=${item.emailUser}"> Edit</a> </td>
     </tr>
-    <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-        <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-    <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-     <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-     <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-     <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-     <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-     <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-     <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-    <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-    <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-    <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-     <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-    <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-         <td>  <a  href="#"> Edit</a> </td>
-    </tr>
+    </c:forEach>
+    
   </tbody>
 </table>
     	

@@ -52,6 +52,7 @@
           </c:if> 
            
  		 <c:if test="${sessionScope.user!=null}">
+            <li><a class="dropdown-item" href="/ReupTrailerMovie/logout">Edit profile</a></li>
             <li><a class="dropdown-item" href="/ReupTrailerMovie/logout">Log out</a></li>
           </c:if> 
            

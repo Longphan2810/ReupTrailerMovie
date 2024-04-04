@@ -195,7 +195,7 @@ public class VideoManagerServlet extends HttpServlet {
 	private void loadTable(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		dsVideo = videoDao.findAll();
-		request.setAttribute("listVideo", dsVideo);
+		request.getServletContext().setAttribute("listVideo", dsVideo);
 	}
 
 }

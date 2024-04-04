@@ -1,9 +1,12 @@
 import java.util.Base64;
 import java.util.Date;
+import java.util.List;
 
 import neko.com.dao.UserDAO;
+import neko.com.dao.VideoDAO;
 import neko.com.dao.XacMinhDAO;
 import neko.com.model.Users;
+import neko.com.model.Video;
 import neko.com.ulti.MailHelper;
 
 public class test {
@@ -38,9 +41,9 @@ public class test {
 //		
 //		Users user = userDao.findUsersByToken("VXNlcnMgW2VtYWlsVXNlcj1waGFubmhhdGxvbmc0NEBnbWFpbC5jb20sIGFkbWluPWZhbHNlLCBmdWxsbmFtZT1OZ3V5ZW4gVmFuIEIsIHBhc3N3b3JkPTEyMw==");
 //	
-		
-		Users user = userDao.findUsersByEmail("phannhatlong44@gmail.com");
-		MailHelper.sendPassToMail("phannhatlong44@gmail.com", user.getPassword());
+//		
+//		Users user = userDao.findUsersByEmail("phannhatlong44@gmail.com");
+//		MailHelper.sendPassToMail("phannhatlong44@gmail.com", user.getPassword());
 //		
 //		if(userDao.exists("vana@gmai.com")) {
 //			System.out.println("x");
@@ -61,10 +64,12 @@ public class test {
 //			
 //		}
 		
+		VideoDAO videoDao = new VideoDAO();
 		
-		
-		
-		
+		List<Video> ds = videoDao.findTopViews();		
+		for (Video video : ds) {
+			System.out.println(video.toString());
+		}
 	}
 	
 }

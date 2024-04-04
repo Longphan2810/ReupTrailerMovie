@@ -42,6 +42,10 @@ public class Users implements Serializable {
 	private Long timeToken;
 	
 	private String status;
+	
+	private String address;
+	
+	private String phone;
 
 	//bi-directional many-to-one association to Favorite
 	@OneToMany(mappedBy="user")
@@ -81,6 +85,24 @@ public class Users implements Serializable {
 
 	public String getStatus() {
 		return status;
+	}
+
+	
+	
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public void setStatus(String status) {

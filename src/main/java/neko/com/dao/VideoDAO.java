@@ -65,5 +65,15 @@ public class VideoDAO {
 		return query.getResultList();
 		
 	}
+	
+	public List<Video> findTopViews(){
+		
+		String sql ="Select o from Video o order by o.views desc";
+		
+		TypedQuery<Video> query = entityMan.createQuery(sql, Video.class);
+		query.setMaxResults(4);
+		return query.getResultList();
+		
+	}
 
 }

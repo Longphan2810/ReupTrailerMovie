@@ -39,7 +39,8 @@ public class FillDataHome implements ServletContextListener {
     	ServletContext applycation = sce.getServletContext();
     	List<Video> danhSachVideo = videoDao.findAll();
     	applycation.setAttribute("listVideo", danhSachVideo);
-    	
+    	List<Video> danhSachTopVideo = videoDao.findTopViews();
+    	applycation.setAttribute("listTopVideo", danhSachTopVideo);
     }
 	
 }

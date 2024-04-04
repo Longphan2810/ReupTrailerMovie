@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,47 +56,64 @@
 <h4 class="ms-3 text-white">Movie</h4>
 	<div  class="row mx-auto">
 	
-		<c:forEach var="item" items="${listVideo}">
+		<c:forEach var="i" begin="0" end="${7}" step="1">
 		<div class="col-sm-6 col-md-4 col-lg-3  col-sx-12 ">
+		
+		<c:if test="${listVideo[i+ ListEnd]!=null}">
 		<jsp:include page="./Movie/MovieRender.jsp">
-			<jsp:param value="${item.title}" name="title"/>
-			<jsp:param value="${item.poster}" name="poster"/>
-			<jsp:param value="${item.idVideo}" name="idVideo"/>
+			<jsp:param value="${listVideo[i + ListEnd].title}" name="title"/>
+			<jsp:param value="${listVideo[i + ListEnd].poster}" name="poster"/>
+			<jsp:param value="${listVideo[i + ListEnd].idVideo}" name="idVideo"/>
 		
 		</jsp:include>
-		
+		</c:if>
 		</div>
 		</c:forEach>
 		
-			
 	
 	</div>
 	
+	<div class=" w-100  d-flex justify-content-center">
+			<div class="mx-auto">
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+  	<c:set var="maxPage" value="0"></c:set>
+    <li class="page-item"><a class="page-link" href="/ReupTrailerMovie/Home/page?numPage=${CurrentPage>1?CurrentPage-1:1}">Previous</a></li>
+    
+    
+    <c:forEach var="i" begin="0" end="${fn:length(listVideo) /8}" step="1">
+    <li class="page-item"><a class="page-link" href="/ReupTrailerMovie/Home/page?numPage=${i+1}">${i+1}</a></li> 
+    <c:set var="maxPage" value="${i+1}"></c:set>
+    </c:forEach>
+    
+    
+    <li class="page-item"><a class="page-link" href="/ReupTrailerMovie/Home/page?numPage=${CurrentPage<maxPage?CurrentPage+1:maxPage}">Next</a></li>
+  </ul>
+</nav>
 
+			</div>
+	
+	</div>
+	
 </div>
 <%--top view --%>
 <div class="d-none d-md-block col-3">
 
 <h2 class="text-white">Top View</h2>
 
-<div class="my-2">
-<%@include file="/views/Movie/TopMovie.jsp" %>
-
-</div>
-
+<c:forEach var="item" items="${listTopVideo}">
 
 <div class="my-2">
-<%@include file="/views/Movie/TopMovie.jsp" %>
+<jsp:include page="./Movie/TopMovie.jsp">
+			<jsp:param value="${item.title}" name="title"/>
+			<jsp:param value="${item.poster}" name="poster"/>
+			<jsp:param value="${item.views}" name="views"/>
 
+</jsp:include>
 </div>
-<div class="my-2">
-<%@include file="/views/Movie/TopMovie.jsp" %>
 
-</div>
-<div class="my-2">
-<%@include file="/views/Movie/TopMovie.jsp" %>
+</c:forEach>
 
-</div>
 
 
 </div>

@@ -77,7 +77,7 @@ public class LoginAndRegisterServlet extends HttpServlet {
 		} else {
 
 			// check pass
-			if (user.getPassword().equals(inputPass)) {
+			if (user.getPassword().equals(inputPass) && user.getStatus().equalsIgnoreCase("active")) {
 				// save cookie remember
 
 				request.getSession().setAttribute("user", user);

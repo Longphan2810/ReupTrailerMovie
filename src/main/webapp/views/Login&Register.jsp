@@ -99,7 +99,7 @@ input[type="text"]:after {
    <div id="liveAlertPlaceholder" >	
    <div class="${saiPass==true?'':'d-none'}">
    	<div class="alert alert-danger alert-dismissible" role="alert">   
-   <div>Sai Mật khẩu !</div>   
+   <div>Sai Mật khẩu Hoặc tài khoản chưa được kích hoạt !</div>   
    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
    </div></div></div>
     <%--alert  --%>
