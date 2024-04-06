@@ -1,3 +1,6 @@
+
+<a href="/ReupTrailerMovie/ActionVideoServlet/playvideo?idVideo=${param.idVideo}" style="text-decoration: none;">
+
 <div class="d-flex flex-nonwrap m-1" style="width: 100%; background-color: #000217">
   <img src="/ReupTrailerMovie/imgPoster/${param.poster}" style="width: 100px; height: 120px" class="card-img-top" alt="...">
   <div class="card-body">
@@ -9,3 +12,5 @@
     </div>
   </div>
 </div>	
+
+</a>

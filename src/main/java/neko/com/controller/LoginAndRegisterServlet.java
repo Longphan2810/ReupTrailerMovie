@@ -2,17 +2,20 @@ package neko.com.controller;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Base64;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.beanutils.BeanUtils;
 
+import neko.com.dao.FavoriteDAO;
 import neko.com.dao.UserDAO;
+import neko.com.model.Favorite;
 import neko.com.model.Users;
 import neko.com.ulti.MailHelper;
 import neko.com.ulti.RegisterHelper;
@@ -24,6 +27,7 @@ import neko.com.ulti.RegisterHelper;
 public class LoginAndRegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserDAO userDao = new UserDAO();
+	private FavoriteDAO favoriteDao = new FavoriteDAO();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -41,6 +45,18 @@ public class LoginAndRegisterServlet extends HttpServlet {
 
 		String uri = request.getRequestURI();
 
+		Cookie[] cookies = request.getCookies();
+
+		for (Cookie cookie : cookies) {
+
+			if (cookie.getName().equals("user")) {
+				request.setAttribute("CookieUser", cookie.getValue());
+			}
+			if (cookie.getName().equals("pass")) {
+				request.setAttribute("CookiePass", cookie.getValue());
+			}
+		}
+
 		if (request.getMethod().equalsIgnoreCase("post")) {
 
 			if (uri.contains("Register")) {
@@ -57,7 +73,6 @@ public class LoginAndRegisterServlet extends HttpServlet {
 			this.getLogOut(request, response);
 			return;
 		}
-
 
 		request.getRequestDispatcher("/views/Login&Register.jsp").forward(request, response);
 
@@ -79,6 +94,32 @@ public class LoginAndRegisterServlet extends HttpServlet {
 			// check pass
 			if (user.getPassword().equals(inputPass) && user.getStatus().equalsIgnoreCase("active")) {
 				// save cookie remember
+				if (remeber != null) {
+
+					Cookie cookieUser = new Cookie("user", inputMail);
+					Cookie cookiePass = new Cookie("pass", inputMail);
+
+					cookiePass.setMaxAge(60 * 60 * 24 * 3);
+					cookieUser.setMaxAge(60 * 60 * 24 * 3);
+
+					response.addCookie(cookieUser);
+					response.addCookie(cookiePass);
+
+				} else {
+
+					Cookie cookieUser = new Cookie("user", inputMail);
+					Cookie cookiePass = new Cookie("pass", inputPass);
+
+					cookiePass.setMaxAge(0);
+					cookieUser.setMaxAge(0);
+
+					response.addCookie(cookieUser);
+					response.addCookie(cookiePass);
+				}
+
+				// load data myFavorite in sessionScope
+				List<Favorite> listMyFavorite = favoriteDao.SeleteByIdUser(user.getEmailUser());
+				request.getSession().setAttribute("listMyFavorite", listMyFavorite);
 
 				request.getSession().setAttribute("user", user);
 				request.getRequestDispatcher("/views/Home.jsp").forward(request, response);

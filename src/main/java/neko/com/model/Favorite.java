@@ -1,6 +1,8 @@
 package neko.com.model;
 
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.*;
 
 
@@ -13,10 +15,12 @@ import javax.persistence.*;
 public class Favorite implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private long idFavorite;
-
-	private String likeDate;
+	
+	@Temporal(TemporalType.DATE)
+	private Date likeDate;
 
 	//bi-directional many-to-one association to User
 	@ManyToOne
@@ -39,11 +43,11 @@ public class Favorite implements Serializable {
 		this.idFavorite = idFavorite;
 	}
 
-	public String getLikeDate() {
+	public Date getLikeDate() {
 		return this.likeDate;
 	}
 
-	public void setLikeDate(String likeDate) {
+	public void setLikeDate(Date likeDate) {
 		this.likeDate = likeDate;
 	}
 
@@ -62,5 +66,6 @@ public class Favorite implements Serializable {
 	public void setVideo(Video video) {
 		this.video = video;
 	}
+	
 
 }

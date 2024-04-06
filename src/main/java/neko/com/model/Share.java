@@ -15,6 +15,7 @@ import javax.persistence.*;
 public class Share implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private long idShare;
 

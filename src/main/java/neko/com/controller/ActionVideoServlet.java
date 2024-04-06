@@ -2,6 +2,10 @@ package neko.com.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -38,14 +42,52 @@ public class ActionVideoServlet extends HttpServlet {
 		String uri = request.getRequestURI();
 		Cookie[] arrCookies = request.getCookies();
 		listVuaXem.clear();
-		for (int i = 0; i < arrCookies.length; i++) {
-			Video videoTemp = videoDao.findById(arrCookies[i].getName());
-			if (videoTemp != null) {
-				listVuaXem.add(videoTemp);
+
+		if (arrCookies != null) {
+			Comparator<Cookie> cmp = new Comparator<Cookie>() {
+
+				@Override
+				public int compare(Cookie o1, Cookie o2) {
+					// TODO Auto-generated method stub
+
+					if (o1.getName().equalsIgnoreCase("JSESSIONID") || o2.getName().equalsIgnoreCase("JSESSIONID")) {
+
+						return 0;
+
+					}
+					if (o1.getName().equalsIgnoreCase("user") || o2.getName().equalsIgnoreCase("user")) {
+
+						return 0;
+
+					}
+					if (o1.getName().equalsIgnoreCase("pass") || o2.getName().equalsIgnoreCase("pass")) {
+
+						return 0;
+
+					}
+					if (Long.parseLong(o1.getValue()) > Long.parseLong(o2.getValue())) {
+
+						return -1;
+					} else if (Long.parseLong(o1.getValue()) < Long.parseLong(o2.getValue())) {
+
+						return 1;
+					} else {
+
+						return 0;
+					}
+				}
+			};
+
+			Arrays.sort(arrCookies, cmp);
+
+			for (int i = 0; i < arrCookies.length; i++) {
+				Video videoTemp = videoDao.findById(arrCookies[i].getName());
+				if (videoTemp != null) {
+					listVuaXem.add(videoTemp);
+
+				}
 
 			}
-			
-
 		}
 
 		request.setAttribute("listVuaXem", listVuaXem);
@@ -68,7 +110,7 @@ public class ActionVideoServlet extends HttpServlet {
 
 		if (video != null) {
 
-			Cookie cookieMovie = new Cookie(video.getIdVideo(), "");
+			Cookie cookieMovie = new Cookie(video.getIdVideo(), new Date().getTime() + "");
 			cookieMovie.setMaxAge(60 * 60 * 24 * 3);
 			response.addCookie(cookieMovie);
 			video.setViews(video.getViews() + 1);

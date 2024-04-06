@@ -59,38 +59,74 @@ border-bottom: 2px solid #EB8A05 !important ;
     
     	<div class="container">
     	
-    	
-    	<form action="">
+    	 <%--alert  --%>
+   <div id="liveAlertPlaceholder" >
+   <div class="${okUpdate==true?'':'d-none'}" >
+   	<div class="alert alert-success alert-dismissible" role="alert">   
+   <div>Cập nhật thành công !</div>   
+   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div></div></div>
+    <%--alert  --%>
+    	<form action="/ReupTrailerMovie/UserChanges/EditProfile" method="post">
     	
     	<div class="form-floating mb-3" >
-  			<input type="email" class="form-control text-white" readonly="readonly" name="emailUser" id="floatingInput" style="background-color: #0D1023 !important" placeholder="name@example.com">
+  			<input type="email" class="form-control text-white" value="${sessionScope.user.emailUser}" readonly="readonly" name="emailUser" id="floatingInput" style="background-color: #0D1023 !important" placeholder="name@example.com">
  			<label  for="floatingInput">Email address</label>
 		</div>
     	
     	<div class="form-floating mb-3">
-  			<input type="text" class="form-control text-white" name="fullname" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Password">
+  			<input type="text" class="form-control text-white" required="required" value="${sessionScope.user.fullname}" name="fullname" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Password">
   			<label for="floatingPassword">Name</label>
+  			
+  			<%--alert  --%>
+   <div id="liveAlertPlaceholder" >	
+   <div class="${validName==true?'':'d-none'}">
+   	<div class="alert alert-danger alert-dismissible" role="alert">   
+   <div>Tên Không Hợp Lệ !</div>   
+   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div></div></div>
+    <%--alert  --%>
+  			
 		</div>
 		
 		<div class="form-floating mb-3">
-  			<input type="text" class="form-control text-white" name="address" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Password">
+  			<input type="text" class="form-control text-white" value="${sessionScope.user.address}" name="address" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Password">
   			<label for="floatingPassword">Address</label>
 		</div>
 		<div class="form-floating mb-3">
-  			<input type="text" class="form-control text-white" name="phone" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Password">
+  			<input type="text" class="form-control text-white"  value="${sessionScope.user.phone}" name="phone" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Password">
   			<label for="floatingPassword">Phone number</label>
+  			<%--alert  --%>
+   <div id="liveAlertPlaceholder" >	
+   <div class="${PhoneValid==true?'':'d-none'}">
+   	<div class="alert alert-danger alert-dismissible" role="alert">   
+   <div>SĐT chỉ nhập số và từ 10 hoặc 11 số !</div>   
+   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div></div></div>
+    <%--alert  --%>
+  			
 		</div>
 		
     	
     	<div class="form-floating mb-3">
   			<input type="password" class="form-control text-white" name="password" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Password">
   			<label for="floatingPassword">Password</label>
+  			
+  			<%--alert  --%>
+   <div id="liveAlertPlaceholder" >	
+   <div class="${PassFail==true?'':'d-none'}">
+   	<div class="alert alert-danger alert-dismissible" role="alert">   
+   <div>Vui lòng nhập đúng mật khẩu của tài khoản hiện tại !</div>   
+   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div></div></div>
+    <%--alert  --%>
+  			
 		</div>
     	
 		
 
     	<div class="text-center my-3">
-    	<button type="button" class="btn btn-warning btn-lg">Confirm</button>
+    	<button type="submit" class="btn btn-warning btn-lg">Confirm</button>
     	</div>
     	</form>
     	

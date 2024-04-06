@@ -59,22 +59,59 @@ border-bottom: 2px solid #EB8A05 !important ;
     	<div class="container">
     	
     	
-    	<form action="">
+    	<form action="/ReupTrailerMovie/UserChanges/ChangesPass" method="post">
+    	<%--alert  --%>
+   <div id="liveAlertPlaceholder" >
+   <div class="${okUpdate==true?'':'d-none'}" >
+   	<div class="alert alert-success alert-dismissible" role="alert">   
+   <div>Cập nhật thành công !</div>   
+   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div></div></div>
+    <%--alert  --%>
     	
-    	
-    	<div class="form-floating mb-3"">
-  			<input type="password" class="form-control text-white" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Password">
+    	<div class="form-floating mb-3">
+  			<input type="password" class="form-control text-white" required="required" name="pass" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Password">
   			<label for="floatingPassword">Password</label>
+  				<%--alert  --%>
+   <div id="liveAlertPlaceholder" >	
+   <div class="${FailPass==true?'':'d-none'}">
+   	<div class="alert alert-danger alert-dismissible" role="alert">   
+   <div>Vui lòng nhập đúng mật khẩu của tài khoản hiện tại !</div>   
+   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div></div></div>
+    <%--alert  --%>
+		</div>
+		
+		<div class="form-floating mb-3">
+  			<input type="password" class="form-control text-white" required="required" name="newPass" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Password">
+  			<label for="floatingPassword">New Password</label>
+  			
+  			<%--alert  --%>
+   <div id="liveAlertPlaceholder" >	
+   <div class="${ShortPass==true?'':'d-none'}">
+   	<div class="alert alert-danger alert-dismissible" role="alert">   
+   <div>Mật khẩu vui lòng dài hơn 7 ký tự !</div>   
+   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div></div></div>
+    <%--alert  --%>
 		</div>
     	
-		<div class="form-floating mb-3"">
-  			<input type="password" class="form-control text-white" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Password">
+		<div class="form-floating mb-3">
+  			<input type="password" class="form-control text-white" required="required" name="confirmPass" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Password">
   			<label for="floatingPassword">Confirm Password</label>
+  			
+  			
+  			<%--alert  --%>
+   <div id="liveAlertPlaceholder" >	
+   <div class="${DiffPass==true?'':'d-none'}">
+   	<div class="alert alert-danger alert-dismissible" role="alert">   
+   <div>Mật khẩu Không khớp !</div>   
+   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div></div></div>
+    <%--alert  --%>
+  			
 		</div>
-		<div class="form-floating mb-3"">
-  			<input type="text" class="form-control text-white" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Password">
-  			<label for="floatingPassword">Code</label>
-		</div>
+	
 	
 		<div class=" my-1 row">
 			<div class="col-8">
@@ -90,7 +127,7 @@ border-bottom: 2px solid #EB8A05 !important ;
 		</div>
 
     	<div class="text-center my-3">
-    	<button type="button" class="btn btn-warning btn-lg">Confirm</button>
+    	<button type="submit" class="btn btn-warning btn-lg">Confirm</button>
     	</div>
     	</form>
     	
@@ -131,7 +168,7 @@ border-bottom: 2px solid #EB8A05 !important ;
 
 <script type="text/javascript">
 
- var
+ 
 
 </script>
 

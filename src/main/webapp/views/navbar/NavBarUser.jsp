@@ -36,7 +36,7 @@
         
          <c:if test="${sessionScope.user.admin}">
          <li class="nav-item me-3">
-          <a class="nav-link text-white " href="/ReupTrailerMovie/views/BaoCao.jsp"> <h4>Reports</h4> </a>
+          <a class="nav-link text-white " href="/ReupTrailerMovie/ReportServlet"> <h4>Reports</h4> </a>
         </li>
         </c:if>
         
@@ -48,11 +48,12 @@
           <ul class="dropdown-menu">
           
           <c:if test="${sessionScope.user==null}">
-            <li><a class="dropdown-item" href="/ReupTrailerMovie/views/Login&Register.jsp">Login / Register</a></li>
+            <li><a class="dropdown-item" href="/ReupTrailerMovie/Login">Login / Register</a></li>
           </c:if> 
            
  		 <c:if test="${sessionScope.user!=null}">
-            <li><a class="dropdown-item" href="/ReupTrailerMovie/logout">Edit profile</a></li>
+ 		 <li><a class="dropdown-item" href="/ReupTrailerMovie/views/ChangePass.jsp">Changes Password</a></li>
+            <li><a class="dropdown-item" href="/ReupTrailerMovie/views/EditProfile.jsp">Edit profile</a></li>
             <li><a class="dropdown-item" href="/ReupTrailerMovie/logout">Log out</a></li>
           </c:if> 
            

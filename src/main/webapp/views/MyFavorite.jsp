@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,22 +34,20 @@
 <div class="col-9 ">
 <h4 class="ms-3 text-white">My Favorite</h4>
 	<div  class="row mx-auto">
-		<div class="col-sm-6 col-md-4 col-lg-3  col-sx-12 ">
-		<%@include file="/views/Movie/MovieRender.jsp" %>
-		</div>
-		<div class="col-sm-6 col-md-4  col-lg-3  col-sx-12 ">
-		<%@include file="/views/Movie/MovieRender.jsp" %>
-		</div>
-		<div class="col-sm-6 col-md-4  col-lg-3  col-sx-12 ">
-		<%@include file="/views/Movie/MovieRender.jsp" %>
-		</div>
-		<div class="col-sm-6 col-md-4 col-lg-3  col-sx-12 ">
-		<%@include file="/views/Movie/MovieRender.jsp" %>
-		</div>
-		<div class="col-sm-6 col-md-4 col-lg-3  col-sx-12 ">
-		<%@include file="/views/Movie/MovieRender.jsp" %>
-		</div>
-		
+	
+	<c:forEach var="item" items="${sessionScope.listMyFavorite}">
+	<div class="col-sm-6 col-md-4 col-lg-3  col-sx-12 ">
+			<jsp:include page="./Movie/MovieRender.jsp">
+			<jsp:param value="${item.video.title}" name="title"/>
+			<jsp:param value="${item.video.poster}" name="poster"/>
+			<jsp:param value="${item.video.idVideo}" name="idVideo"/>
+			<jsp:param value="/ReupTrailerMovie/FavoriteVideo/favorite?likeVideo=" name="url"/>
+			<jsp:param value="true" name="like"/>
+			
+			</jsp:include>
+			
+	</div>
+	</c:forEach>
 	
 	</div>
 
@@ -55,26 +55,19 @@
 <%--top view --%>
 <div class="d-none d-md-block col-3">
 
-<h2 class="text-white">Top View</h2>
+<c:forEach var="item" items="${listTopVideo}">
 
 <div class="my-2">
-<%@include file="/views/Movie/TopMovie.jsp" %>
+<jsp:include page="./Movie/TopMovie.jsp">
+			<jsp:param value="${item.title}" name="title"/>
+			<jsp:param value="${item.poster}" name="poster"/>
+			<jsp:param value="${item.views}" name="views"/>
+			<jsp:param value="${item.idVideo}" name="idVideo"/>
 
+</jsp:include>
 </div>
 
-
-<div class="my-2">
-<%@include file="/views/Movie/TopMovie.jsp" %>
-
-</div>
-<div class="my-2">
-<%@include file="/views/Movie/TopMovie.jsp" %>
-
-</div>
-<div class="my-2">
-<%@include file="/views/Movie/TopMovie.jsp" %>
-
-</div>
+</c:forEach>
 
 
 </div>

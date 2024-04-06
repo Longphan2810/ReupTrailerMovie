@@ -80,7 +80,7 @@ input[type="text"]:after {
     	
     	
     	<div class="form-floating mb-3" >
-  			<input type="email" class="form-control text-white" value="${emailOut}" name="mail" required="required" id="floatingInput" style="background-color: #0D1023 !important" placeholder="name@example.com">
+  			<input type="email" class="form-control text-white" value="${emailOut==null?CookieUser:emailOut}" name="mail" required="required" id="floatingInput" style="background-color: #0D1023 !important" placeholder="name@example.com">
  			<label  for="floatingInput">Email address</label>
  					 <%--alert  --%>
    <div id="liveAlertPlaceholder" >	
@@ -93,7 +93,7 @@ input[type="text"]:after {
 		</div>
 		
 		<div class="form-floating">
-  			<input type="password" class="form-control text-white" value="${passOut}" name="pass" required="required" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Password">
+  			<input type="password" class="form-control text-white" value="${passOut==null?CookiePass:passOut}" name="pass" required="required" style="background-color: #0D1023 !important" id="floatingPassword" placeholder="Password">
   			<label for="floatingPassword">Password</label>
   					 <%--alert  --%>
    <div id="liveAlertPlaceholder" >	

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/functions"	 prefix="fn" %>
     
 <!DOCTYPE html>
 <html>
@@ -82,15 +83,15 @@
 
 	
 	<div  class="row mx-auto">
-	<c:forEach var="i" items="${listVuaXem}">
+	<c:forEach var="i"  begin="0" end="${fn:length(listVuaXem)<4?fn:length(listVuaXem)-1:3}" step="1">
 		<div class="col-sm-6 col-md-4 col-lg-3  col-sx-12 ">
 		
 		<jsp:include page="./Movie/MovieRender.jsp">
-			<jsp:param value="${i.title}" name="title"/>
-			<jsp:param value="${i.poster}" name="poster"/>
-			<jsp:param value="${i.idVideo}" name="idVideo"/>
-		
+			<jsp:param value="${listVuaXem[i].title}" name="title"/>
+			<jsp:param value="${listVuaXem[i].poster}" name="poster"/>
+			<jsp:param value="${listVuaXem[i].idVideo}" name="idVideo"/>
 		</jsp:include>
+		
 		</div>
 		</c:forEach>
 	</div>

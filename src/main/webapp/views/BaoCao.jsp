@@ -73,35 +73,18 @@ border-bottom: 2px solid #EB8A05 !important ;
     </tr>
   </thead>
   <tbody>
+    <c:forEach var="item" items="${listReportFavorite}">
     
      <tr>
-      <th >Nha Ba Nu | Tran Thanh</th>
-      <td>900</td>
-      <td>10/10/1000</td>
-      <td>10/10/2000</td>
+      <th >${item.videoTilte}</th>
+      <td>${item.favoriteCount}</td>
+      <td>${item.lastDate}</td>
+      <td>${item.oldDate}</td>
       
     </tr>
-      <tr>
-      <th >Nha Ba Nu | Tran Thanh</th>
-      <td>900</td>
-      <td>10/10/1000</td>
-      <td>10/10/2000</td>
-      
-    </tr>
-     <tr>
-      <th >Nha Ba Nu | Tran Thanh</th>
-      <td>900</td>
-      <td>10/10/1000</td>
-      <td>10/10/2000</td>
-      
-    </tr>
-     <tr>
-      <th >Nha Ba Nu | Tran Thanh</th>
-      <td>900</td>
-      <td>10/10/1000</td>
-      <td>10/10/2000</td>
-      
-    </tr>
+    
+    </c:forEach>
+    
    
     
   </tbody>
@@ -124,6 +107,16 @@ border-bottom: 2px solid #EB8A05 !important ;
     
     <div class="tab-pane text-white" id="profile" role="tabpanel">
     
+    <div>
+    <form action="">
+    <div class="row">
+    	<label class="col-3 text-center">Video Title  </label>
+    	<input class="col-6" type="text"  >
+  
+    	<input class="col-3 btn btn-secondary" type="submit" value="Tim Kiem" >
+    </div>
+    </form>
+    </div>
     	<div class="container mt-4 table-responsive " style="height: 500px">
     	
     <table class="table" style="background-color: #0D1023 !important">
@@ -131,9 +124,8 @@ border-bottom: 2px solid #EB8A05 !important ;
     <tr>
       <th scope="col">User Name</th>
       <th scope="col">Email</th>
-      <th scope="col">Password</th>
-      <th scope="col">Role</th>
-      <th scope="col"></th>
+      <th scope="col">Favorite Date</th>
+  
     </tr>
   </thead>
   <tbody>
@@ -145,42 +137,8 @@ border-bottom: 2px solid #EB8A05 !important ;
       <td>@mdo</td>
           <td>  <a  href="#"> Edit</a> </td>
     </tr>
-     <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-     <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-     <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-     <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-    <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-   
+     
+  
     
   </tbody>
 </table>
@@ -194,7 +152,19 @@ border-bottom: 2px solid #EB8A05 !important ;
     
     <div class="tab-pane text-white" id="share" role="tabpanel">
     
+    <div>
+    <form action="">
+    <div class="row">
+    	<label class="col-3 text-center">Video Title  </label>
+    	<input class="col-6" type="text"  >
+  
+    	<input class="col-3 btn btn-secondary" type="submit" value="Tim Kiem" >
+    </div>
+    </form>
+    </div>
+    
     	<div class="container mt-4 table-responsive " style="height: 500px">
+    	
     	
     <table class="table" style="background-color: #0D1023 !important">
   <thead>

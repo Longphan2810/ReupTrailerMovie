@@ -59,13 +59,27 @@
 		<c:forEach var="i" begin="0" end="${7}" step="1">
 		<div class="col-sm-6 col-md-4 col-lg-3  col-sx-12 ">
 		
+		
 		<c:if test="${listVideo[i+ ListEnd]!=null}">
+		<c:set var="like" value="false" ></c:set>
+		<c:forEach var="favorite" items="${listMyFavorite}">
+			<c:if test="${favorite.video.idVideo==listVideo[i + ListEnd].idVideo}">
+			<c:set var="like" value="true" ></c:set>
+			</c:if>
+		
+		</c:forEach>
+		
 		<jsp:include page="./Movie/MovieRender.jsp">
 			<jsp:param value="${listVideo[i + ListEnd].title}" name="title"/>
 			<jsp:param value="${listVideo[i + ListEnd].poster}" name="poster"/>
 			<jsp:param value="${listVideo[i + ListEnd].idVideo}" name="idVideo"/>
-		
+			<jsp:param value="/ReupTrailerMovie/FavoriteVideo/home?likeVideo=" name="url"/>
+			
+				<jsp:param value="${like}" name="like"/>
+			
 		</jsp:include>
+		
+		
 		</c:if>
 		</div>
 		</c:forEach>
@@ -108,6 +122,7 @@
 			<jsp:param value="${item.title}" name="title"/>
 			<jsp:param value="${item.poster}" name="poster"/>
 			<jsp:param value="${item.views}" name="views"/>
+			<jsp:param value="${item.idVideo}" name="idVideo"/>
 
 </jsp:include>
 </div>
