@@ -42,13 +42,13 @@ border-bottom: 2px solid #EB8A05 !important ;
    
    <div class="row">
     <div class="col-4">
-     <a class="active  list-group-item-action  list-group-item  text-white"  style="text-decoration: none; background-color: #0D1023 !important" data-bs-toggle="list" href="#home" role="tab"><h3>User Edition</h3> </a>
+     <a class=" ${userActive!=true&&shareActive!=true?'active':''} list-group-item-action  list-group-item  text-white"  style="text-decoration: none; background-color: #0D1023 !important" data-bs-toggle="list" href="#home" role="tab"><h3>User Edition</h3> </a>
     </div>
     <div class="col-4">
-    <a class=" list-group-item-action list-group-item  text-white" style="text-decoration: none;  background-color: #0D1023 !important" data-bs-toggle="list" href="#profile" role="tab"> <h3>Favorite Users</h3> </a>
+    <a class=" ${userActive==true&&shareActive!=true?'active':''} list-group-item-action list-group-item  text-white" style="text-decoration: none;  background-color: #0D1023 !important" data-bs-toggle="list" href="#profile" role="tab"> <h3>Favorite Users</h3> </a>
    </div>
     <div class="col-4">
-    <a class=" list-group-item-action list-group-item  text-white" style="text-decoration: none;  background-color: #0D1023 !important" data-bs-toggle="list" href="#share" role="tab"> <h3>Shared Friends	</h3> </a>
+    <a class=" ${userActive!=true&&shareActive==true?'active':''} list-group-item-action list-group-item  text-white" style="text-decoration: none;  background-color: #0D1023 !important" data-bs-toggle="list" href="#share" role="tab"> <h3>Shared Friends	</h3> </a>
    </div>
    </div>
 
@@ -58,7 +58,7 @@ border-bottom: 2px solid #EB8A05 !important ;
   <div class="tab-content my-3">
   
   <%-- Quan ly video --%>
-    <div class="tab-pane active text-white " id="home" role="tabpanel">
+    <div class="tab-pane ${userActive!=true&&shareActive!=true?'active':''} text-white " id="home" role="tabpanel">
     
     		<div class="container mt-4 table-responsive " style="height: 500px">
     	
@@ -68,7 +68,7 @@ border-bottom: 2px solid #EB8A05 !important ;
       <th scope="col">Video Title</th>
       <th scope="col">Favorite Count</th>
       <th scope="col">Last Date</th>
-      <th scope="col">Odl Date</th>
+      <th scope="col">Old Date</th>
     
     </tr>
   </thead>
@@ -99,19 +99,16 @@ border-bottom: 2px solid #EB8A05 !important ;
     
     </div>
     
-    
-    
-    
-      
+  
   <%-- List Favorite User --%>
     
-    <div class="tab-pane text-white" id="profile" role="tabpanel">
+    <div class="tab-pane ${userActive==true&&shareActive!=true?'active':''} text-white" id="profile" role="tabpanel">
     
     <div>
-    <form action="">
+    <form action="/ReupTrailerMovie/ReportServlet/favoriteUser" method="post">
     <div class="row">
     	<label class="col-3 text-center">Video Title  </label>
-    	<input class="col-6" type="text"  >
+    	<input class="col-6" name="inputTitle" type="text"  >
   
     	<input class="col-3 btn btn-secondary" type="submit" value="Tim Kiem" >
     </div>
@@ -130,13 +127,16 @@ border-bottom: 2px solid #EB8A05 !important ;
   </thead>
   <tbody>
     
+    <c:forEach var="item"  items="${listReportFavoriteUser}">
      <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
+      <th >${item.email}</th>
+      <td>${item.fullname}</td>
+      <td>${item.favoriteDate}</td>
+    
     </tr>
+    </c:forEach>
+    
+    
      
   
     
@@ -150,13 +150,13 @@ border-bottom: 2px solid #EB8A05 !important ;
 <%-- List Shared Friends --%>
     
     
-    <div class="tab-pane text-white" id="share" role="tabpanel">
+    <div class="tab-pane ${userActive!=true&&shareActive==true?'active':''} text-white" id="share" role="tabpanel">
     
     <div>
-    <form action="">
+    <form action="/ReupTrailerMovie/ReportServlet/favoriteShare" method="post">
     <div class="row">
     	<label class="col-3 text-center">Video Title  </label>
-    	<input class="col-6" type="text"  >
+    	<input class="col-6" type="text" name="inputTitle" >
   
     	<input class="col-3 btn btn-secondary" type="submit" value="Tim Kiem" >
     </div>
@@ -169,112 +169,28 @@ border-bottom: 2px solid #EB8A05 !important ;
     <table class="table" style="background-color: #0D1023 !important">
   <thead>
     <tr>
-      <th scope="col">User Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Password</th>
-      <th scope="col">Role</th>
-      <th scope="col"></th>
+      <th scope="col">Sender Name</th>
+      <th scope="col">Sender Email</th>
+      <th scope="col">Receiver Email</th>
+      <th scope="col">Send date</th>
+   
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td>  <a  href="#"> Edit</a> </td>
+  
+  <c:forEach var="item" items="${listFavoritesShare}">
+  <tr>
+      <th >${item.nguoiGui}</th>
+      <td>${item.emailGui}</td>
+      <td>${item.emailNhan}</td>
+      <td>${item.dateGui}</td>
+      
     </tr>
-    <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-        <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-    <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-     <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-     <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-     <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-     <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-     <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-     <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-    <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-    <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-    <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-     <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-          <td>  <a  href="#"> Edit</a> </td>
-    </tr>
-    <tr>
-      <th >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-         <td>  <a  href="#"> Edit</a> </td>
-    </tr>
+  
+  </c:forEach>
+  
+    
+    
   </tbody>
 </table>
     	

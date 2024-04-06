@@ -11,6 +11,7 @@ import javax.persistence.*;
  * 
  */
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "EmailUser","idVideo" }))
 @NamedQuery(name="Favorite.findAll", query="SELECT f FROM Favorite f")
 public class Favorite implements Serializable {
 	private static final long serialVersionUID = 1L;

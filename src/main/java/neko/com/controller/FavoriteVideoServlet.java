@@ -25,7 +25,7 @@ import neko.com.ulti.HibernateUtil;
 /**
  * Servlet implementation class FavoriteVideoServlet
  */
-@WebServlet({ "/FavoriteVideo/home", "/FavoriteVideo/favorite" })
+@WebServlet({ "/FavoriteVideo/home", "/FavoriteVideo/favorite","/FavoriteVideo/video" })
 public class FavoriteVideoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private VideoDAO videoDao = new VideoDAO();
@@ -52,6 +52,9 @@ public class FavoriteVideoServlet extends HttpServlet {
 		} else if (uri.contains("/FavoriteVideo/favorite")) {
 			getLikeOrDislike(request, response);
 			request.getRequestDispatcher("/views/MyFavorite.jsp").forward(request, response);
+		}else if (uri.contains("/FavoriteVideo/video")) {
+			getLikeOrDislike(request, response);
+			request.getRequestDispatcher("/views/Video.jsp").forward(request, response);
 		}
 
 	}
@@ -66,7 +69,7 @@ public class FavoriteVideoServlet extends HttpServlet {
 			if (video != null) {
 
 				Favorite favorite = favoriteDao.findByIdUserAndIdVideo(user.getEmailUser(), video.getIdVideo());
-
+				request.setAttribute("videoCurrent", video);
 				if (favorite == null) {
 					getLike(user, video);
 

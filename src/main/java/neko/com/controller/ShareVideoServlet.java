@@ -19,7 +19,7 @@ import neko.com.ulti.MailHelper;
 /**
  * Servlet implementation class ShareVideoServlet
  */
-@WebServlet("/ShareVideo")
+@WebServlet({"/ShareVideo/home","/ShareVideo/video"})
 public class ShareVideoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ShareDAO shareDao = new ShareDAO();
@@ -47,6 +47,12 @@ public class ShareVideoServlet extends HttpServlet {
 			
 			getShareVideo(request, response);
 			
+			if(uri.contains("/ShareVideo/video")) {
+				
+				request.getRequestDispatcher("/views/Video.jsp").forward(request, response);
+				return;
+			}
+			
 		}
 		
 		request.getRequestDispatcher("/views/Home.jsp").forward(request, response);
@@ -70,6 +76,7 @@ public class ShareVideoServlet extends HttpServlet {
 			share.setEmail(toMail);
 			share.setShareDate(new Date());
 			shareDao.insert(share);
+			request.setAttribute("videoCurrent", video);
 //			System.out.println(getUrlServervoid(request, response));
 			MailHelper.ShareVideoToMail(toMail, user.getEmailUser(), idVideo, link);
 			

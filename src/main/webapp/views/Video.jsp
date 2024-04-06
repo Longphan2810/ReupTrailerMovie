@@ -37,18 +37,36 @@
 	<div class="col-md-9">
 	<h4 class="text-white">${videoCurrent.title}</h4>
 	</div>
-	<div class="col-md-3 mx-auto text-center">
-	<button type="button" class="btn btn-secondary">
 	
-	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+	<div class="col-md-3 mx-auto text-center">
+	<form action="">
+	<button type="submit" formmethod="post" formaction="/ReupTrailerMovie/FavoriteVideo/video?likeVideo=${videoCurrent.idVideo}" class="btn btn-secondary">
+	
+
+		<c:forEach var="favorite" items="${listMyFavorite}">
+			<c:if test="${favorite.video.idVideo==videoCurrent.idVideo}">
+			<c:set var="like" value="true" ></c:set>
+			</c:if>
+		
+		</c:forEach>
+
+	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="color: ${like==true?'red':''}" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-</svg>
+</svg> Like
 	</button>
-	<button type="button" class="btn btn-secondary">
+	<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModalvideo${videoCurrent.idVideo}">
 	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
   <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5m-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3"/>
-</svg>
+</svg> Share
 	</button>
+	</form>
+	
+	
+
+
+
+<%--footer --%>
+	
 	</div>
 	</div>
 
@@ -102,7 +120,37 @@
 
 </div>
 
-<%--footer --%>
+<!-- Modal -->
+<form action="/ReupTrailerMovie/ShareVideo" method="post">
+<div class="modal fade" id="exampleModalvideo${videoCurrent.idVideo}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+        
+        	<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Send Video to Email </label>
+  <input type="email" name="toEmail" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+</div>
+        
+      </div>
+      <div class="modal-footer">
+      
+     
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" formaction="/ReupTrailerMovie/ShareVideo/video?idVideo=${videoCurrent.idVideo}" class="btn btn-primary">Chia sẻ</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+    </form>
+
+
 
 <%@include  file="/views/footer/Footer.jsp"%> 
 </body>

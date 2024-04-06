@@ -8,6 +8,8 @@ import neko.com.dao.UserDAO;
 import neko.com.dao.VideoDAO;
 import neko.com.dao.XacMinhDAO;
 import neko.com.model.Favorite;
+import neko.com.model.ReportFavoritesUsers;
+import neko.com.model.ReportShareVideo;
 import neko.com.model.Users;
 import neko.com.model.Video;
 import neko.com.model.reportFavorites;
@@ -77,10 +79,11 @@ public class test {
 		
 		ReportDAO reportDao = new ReportDAO();
 		
-		List<reportFavorites> ds = reportDao.getListFavorite();
-		
-		for (reportFavorites reportFavorites : ds) {
+		List<ReportShareVideo> ds = reportDao.getListShareVideo("KẺ ĐỘC HÀNH");
+		System.out.println("y");
+		for (ReportShareVideo reportFavorites : ds) {
 			System.out.println(reportFavorites.toString());
+			System.out.println("x");
 		}
 		
 

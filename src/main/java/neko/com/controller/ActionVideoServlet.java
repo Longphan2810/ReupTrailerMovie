@@ -90,7 +90,7 @@ public class ActionVideoServlet extends HttpServlet {
 			}
 		}
 
-		request.setAttribute("listVuaXem", listVuaXem);
+		request.getServletContext().setAttribute("listVuaXem", listVuaXem);
 
 		if (uri.contains("/ActionVideoServlet/playvideo")) {
 			this.getPlayVideo(request, response);

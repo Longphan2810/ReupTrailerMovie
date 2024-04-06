@@ -76,7 +76,7 @@
       
      
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" formaction="/ReupTrailerMovie/ShareVideo?idVideo=${param.idVideo}" class="btn btn-primary">Chia sẻ</button>
+        <button type="submit" formaction="/ReupTrailerMovie/ShareVideo/home?idVideo=${param.idVideo}" class="btn btn-primary">Chia sẻ</button>
       </div>
     </div>
   </div>
