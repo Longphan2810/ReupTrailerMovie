@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <div class="card m-1" style="width: 100% ;height :330px; background-color: #000217">
 
 	<div class=" movieTong my-3" style="position:relative;  height: 250px">

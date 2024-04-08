@@ -15,21 +15,21 @@
           <a class="nav-link  text-white h4"  href="/ReupTrailerMovie/views/Home.jsp">  <h4>Home</h4>  </a>
         </li>
         
-        <c:if test="${sessionScope.user.admin==false}">
+        <c:if test="${sessionScope.user!=null}">
         <li class="nav-item me-3">
-          <a class="nav-link text-white " href="/ReupTrailerMovie/views/MyFavorite.jsp"> <h4>My Favorite</h4> </a>
+          <a class="nav-link text-white " href="/ReupTrailerMovie/FavoriteVideo/favorite"> <h4>My Favorite</h4> </a>
         </li>
         </c:if>
         
         <c:if test="${sessionScope.user.admin}">
         <li class="nav-item me-3">
-          <a class="nav-link text-white " href="/ReupTrailerMovie/views/QuanLyVideo.jsp"> <h4>Video</h4> </a>
+          <a class="nav-link text-white " href="/ReupTrailerMovie/VideoManagerServlet/RestVideoForm"> <h4>Video</h4> </a>
         </li>
          </c:if>
         
          <c:if test="${sessionScope.user.admin}">
        <li class="nav-item me-3">
-          <a class="nav-link text-white " href="/ReupTrailerMovie/views/QuanLyNguoiDung.jsp"> <h4>User</h4> </a>
+          <a class="nav-link text-white " href="/ReupTrailerMovie/UserManagerServlet/reset"> <h4>User</h4> </a>
         </li>
         	</c:if>
         
@@ -52,8 +52,8 @@
           </c:if> 
            
  		 <c:if test="${sessionScope.user!=null}">
- 		 <li><a class="dropdown-item" href="/ReupTrailerMovie/views/ChangePass.jsp">Changes Password</a></li>
-            <li><a class="dropdown-item" href="/ReupTrailerMovie/views/EditProfile.jsp">Edit profile</a></li>
+ 		 <li><a class="dropdown-item" href="/ReupTrailerMovie/UserChanges/ChangesPass">Changes Password</a></li>
+            <li><a class="dropdown-item" href="/ReupTrailerMovie/UserChanges/EditProfile">Edit profile</a></li>
             <li><a class="dropdown-item" href="/ReupTrailerMovie/logout">Log out</a></li>
           </c:if> 
            

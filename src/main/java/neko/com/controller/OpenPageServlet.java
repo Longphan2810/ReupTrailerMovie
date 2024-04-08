@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class OpenPageServlet
  */
-@WebServlet({"/OpenPageServlet","/Home/page"})
+@WebServlet({"/Home/page"})
 public class OpenPageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -39,11 +39,15 @@ public class OpenPageServlet extends HttpServlet {
 		
 		String page = request.getParameter("numPage");
 		
-		if(page!=null && Integer.parseInt(page)>1) {
+		if(page!=null ) {
+			
+			if( Integer.parseInt(page)>1) {
 			
 			request.setAttribute("ListEnd", Integer.parseInt(page)*7-6);
+			request.setAttribute("CurrentPage", Integer.parseInt(page));
+			}
 		} 
-		request.setAttribute("CurrentPage", Integer.parseInt(page));
+		
 		request.getRequestDispatcher("/views/Home.jsp").forward(request, response);
 	}
 

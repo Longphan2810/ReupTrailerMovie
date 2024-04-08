@@ -90,7 +90,7 @@ public class ShareVideoServlet extends HttpServlet {
 
 		StringBuffer URL = request.getRequestURL();
 		URL.delete(URL.lastIndexOf("/"), URL.length());
-
+		URL.delete(URL.lastIndexOf("/"), URL.length());
 		return URL.toString() + "/ActionVideoServlet/playvideo?idVideo=";
 	}
 

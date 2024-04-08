@@ -97,7 +97,7 @@ public class LoginAndRegisterServlet extends HttpServlet {
 				if (remeber != null) {
 
 					Cookie cookieUser = new Cookie("user", inputMail);
-					Cookie cookiePass = new Cookie("pass", inputMail);
+					Cookie cookiePass = new Cookie("pass", inputPass);
 
 					cookiePass.setMaxAge(60 * 60 * 24 * 3);
 					cookieUser.setMaxAge(60 * 60 * 24 * 3);

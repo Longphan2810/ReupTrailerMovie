@@ -42,6 +42,18 @@ public class EditProfileAndChangesPassServlet extends HttpServlet {
 				return;
 			}
 		}
+		
+		if (request.getMethod().equalsIgnoreCase("get")) {
+			if (uri.contains("/UserChanges/EditProfile")) {
+
+				request.getRequestDispatcher("/views/EditProfile.jsp").forward(request, response);
+				return;
+			} else if (uri.contains("/UserChanges/ChangesPass")) {
+				request.getRequestDispatcher("/views/ChangePass.jsp").forward(request, response);
+			
+				return;
+			}
+		}
 
 		request.getRequestDispatcher("/views/EditProfile.jsp").forward(request, response);
 
