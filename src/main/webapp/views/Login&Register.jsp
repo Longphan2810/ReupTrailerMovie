@@ -74,7 +74,7 @@ input[type="text"]:after {
     
     	<div class="container">
     	
-    	<h2 class="my-4">Welcome Back !</h2>
+    	<h2 class="my-4">Welcome !</h2>
     	
     	<form action="/ReupTrailerMovie/Login" method="post">
     	
@@ -99,10 +99,11 @@ input[type="text"]:after {
    <div id="liveAlertPlaceholder" >	
    <div class="${saiPass==true?'':'d-none'}">
    	<div class="alert alert-danger alert-dismissible" role="alert">   
-   <div>Sai Mật khẩu Hoặc tài khoản chưa được kích hoạt !</div>   
+   <div> ${ban==true?'Tài khoản đã bị khoá':'Sai Mật khẩu Hoặc tài khoản chưa được kích hoạt'} !</div>   
    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
    </div></div></div>
     <%--alert  --%>
+   
 		</div>
     	
 		<div class=" my-1 row">

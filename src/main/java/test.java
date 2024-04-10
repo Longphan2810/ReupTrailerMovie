@@ -43,9 +43,17 @@ public class test {
 //		
 //		System.out.println(currentTime.getTime()+oneMinute);
 
-//		UserDAO userDao = new UserDAO();
-//		
-//		Users user = userDao.findUsersByToken("VXNlcnMgW2VtYWlsVXNlcj1waGFubmhhdGxvbmc0NEBnbWFpbC5jb20sIGFkbWluPWZhbHNlLCBmdWxsbmFtZT1OZ3V5ZW4gVmFuIEIsIHBhc3N3b3JkPTEyMw==");
+		UserDAO userDao = new UserDAO();
+		
+		Users user = userDao.findUsersByEmail("phannhatlong55@gmail.com");
+		
+		System.out.println("data 1 :" + user.getToken());
+		user.setToken("");
+		userDao.update(user);
+		
+		Users user2 = userDao.findUsersByEmail("phannhatlong55@gmail.com");
+		
+		System.out.println("data 2 :" + user2.getToken());
 //	
 //		
 //		Users user = userDao.findUsersByEmail("phannhatlong44@gmail.com");
@@ -77,14 +85,14 @@ public class test {
 //		}
 
 		
-		ReportDAO reportDao = new ReportDAO();
-		
-		List<ReportShareVideo> ds = reportDao.getListShareVideo("KẺ ĐỘC HÀNH");
-		System.out.println("y");
-		for (ReportShareVideo reportFavorites : ds) {
-			System.out.println(reportFavorites.toString());
-			System.out.println("x");
-		}
+//		ReportDAO reportDao = new ReportDAO();
+//		
+//		List<ReportShareVideo> ds = reportDao.getListShareVideo("KẺ ĐỘC HÀNH");
+//		System.out.println("y");
+//		for (ReportShareVideo reportFavorites : ds) {
+//			System.out.println(reportFavorites.toString());
+//			System.out.println("x");
+//		}
 		
 
 	}

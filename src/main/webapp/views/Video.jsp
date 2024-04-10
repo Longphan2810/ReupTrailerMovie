@@ -100,6 +100,8 @@
 <h4 class="ms-3 text-white">Gan Day </h4>
 
 	
+	<c:if test="${fn:length(listVuaXem)-1>=0}">
+	
 	<div  class="row mx-auto">
 	<c:forEach var="i"  begin="0" end="${fn:length(listVuaXem)<4?fn:length(listVuaXem)-1:3}" step="1">
 		<div class="col-sm-6 col-md-4 col-lg-3  col-sx-12 ">
@@ -113,6 +115,8 @@
 		</div>
 		</c:forEach>
 	</div>
+	
+	</c:if>
 
 
 </div>

@@ -26,7 +26,7 @@ import neko.com.ulti.RegisterHelper;
 @WebServlet({ "/Login", "/Register", "/logout" })
 public class LoginAndRegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private UserDAO userDao = new UserDAO();
+	
 	private FavoriteDAO favoriteDao = new FavoriteDAO();
 
 	/**
@@ -47,15 +47,18 @@ public class LoginAndRegisterServlet extends HttpServlet {
 
 		Cookie[] cookies = request.getCookies();
 
-		for (Cookie cookie : cookies) {
+		if (cookies != null) {
 
-			if (cookie.getName().equals("user")) {
-				request.setAttribute("CookieUser", cookie.getValue());
+			for (Cookie cookie : cookies) {
+
+				if (cookie.getName().equals("user")) {
+					request.setAttribute("CookieUser", cookie.getValue());
+				}
+				if (cookie.getName().equals("pass")) {
+					request.setAttribute("CookiePass", cookie.getValue());
+				}
 			}
-			if (cookie.getName().equals("pass")) {
-				request.setAttribute("CookiePass", cookie.getValue());
-			}
-		}
+		}	
 
 		if (request.getMethod().equalsIgnoreCase("post")) {
 
@@ -80,17 +83,27 @@ public class LoginAndRegisterServlet extends HttpServlet {
 
 	private void getLogin(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		UserDAO userDao = new UserDAO();
 		String inputMail = request.getParameter("mail");
 		String inputPass = request.getParameter("pass");
 		String remeber = request.getParameter("remember");
 
 		Users user = userDao.findUsersByEmail(inputMail);
+		
+		
 		// check user
 		if (user == null) {
 			request.setAttribute("saiMail", true);
+			
 
 		} else {
+			// if user ban
+			System.out.println("dell null  " + user.toString());
+			
+			if (user.getStatus().equalsIgnoreCase("ban")) {
 
+				request.setAttribute("ban", true);
+			}
 			// check pass
 			if (user.getPassword().equals(inputPass) && user.getStatus().equalsIgnoreCase("active")) {
 				// save cookie remember
@@ -125,9 +138,13 @@ public class LoginAndRegisterServlet extends HttpServlet {
 				request.getRequestDispatcher("/views/Home.jsp").forward(request, response);
 				return;
 			} else {
+				System.out.println(user.getPassword());
+				System.out.println(user.getToken());
 				request.setAttribute("saiPass", true);
 
 			}
+			
+			
 
 		}
 
@@ -150,6 +167,7 @@ public class LoginAndRegisterServlet extends HttpServlet {
 
 	private void getRegister(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+	    UserDAO userDao = new UserDAO();
 		String checkName = "^[a-zA-Z ]*$";
 		String mail = request.getParameter("emailUser");
 		String passConfirm = request.getParameter("passwordConfirm");
@@ -196,7 +214,7 @@ public class LoginAndRegisterServlet extends HttpServlet {
 			return;
 		}
 
-		if (!userDao.exists(mail)) {
+		if (userDao.findUsersByEmail(mail)==null) {
 			RegisterHelper.setupToken(user);
 			userDao.insert(user);
 			String linkConfirm = this.getUrlServervoid(request, response) + user.getToken();

@@ -79,6 +79,23 @@ border-bottom: 2px solid #EB8A05 !important ;
    </div></div></div>
     <%--alert  --%>
     
+     	<%--alert  --%>
+   <div id="liveAlertPlaceholder" >	
+   <div class="${khongXoa==true?'':'d-none'}">
+   	<div class="alert alert-danger alert-dismissible" role="alert">   
+   <div>Khong the xoa nguoi dung nay !</div>   
+   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div></div></div>
+    <%--alert  --%>
+    	<%--alert  --%>
+   <div id="liveAlertPlaceholder" >	
+   <div class="${khongThe==true?'':'d-none'}">
+   	<div class="alert alert-danger alert-dismissible" role="alert">   
+   <div>Khong the Tu chinh sua ban than !</div>   
+   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div></div></div>
+    <%--alert  --%>
+    
     		<form action="" method="post">
     	<%-- info movie --%>
     	<div class="row" >
@@ -115,9 +132,12 @@ border-bottom: 2px solid #EB8A05 !important ;
     		<input type="radio" required="required" ${CurrentUser.admin?'':'checked'} name="admin" value="false">
     		<label for="floatingPassword">User</label>
     	</div>
-    	
+    	<br>
     	</div>
-    	
+    	<select class="form-select" name="status" aria-label="Default select example">
+  			<option ${CurrentUser.status=='ban'?'':'selected'} value="active">active</option>
+  			<option value="ban" ${CurrentUser.status=='ban'?'selected':''}>ban</option>
+		</select>
     	
     	</div>
     	

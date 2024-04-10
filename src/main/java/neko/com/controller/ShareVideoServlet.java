@@ -78,8 +78,8 @@ public class ShareVideoServlet extends HttpServlet {
 			shareDao.insert(share);
 			request.setAttribute("videoCurrent", video);
 //			System.out.println(getUrlServervoid(request, response));
-			MailHelper.ShareVideoToMail(toMail, user.getEmailUser(), idVideo, link);
-			
+			MailHelper.ShareVideoToMail( user.getEmailUser(),toMail, idVideo, link);
+//			MailHelper.
 		}
 		
 		

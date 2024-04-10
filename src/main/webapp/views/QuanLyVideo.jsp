@@ -230,7 +230,6 @@ border-bottom: 2px solid #EB8A05 !important ;
 <%@include  file="/views/footer/Footer.jsp"%> 
 
 <script type="text/javascript">
-
 // Lắng nghe sự kiện khi người dùng chọn tệp tin
 document.getElementById('fileInput').addEventListener('change', function(event) {
     var file = event.target.files[0];
